@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt8t1ijcp3k8p"]
+
+[ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
+[ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://Character_Idle.png" id="1_nf5ea"]
+[ext_resource type="Script" path="res://scenes/character.gd" id="2_mxlrn"]
+[ext_resource type="Script" path="res://scenes/SpriteManager.gd" id="3_pmc2v"]
+[ext_resource type="Script" path="res://scenes/StateManager.gd" id="5_i8teh"]
+[ext_resource type="Script" path="res://scenes/DebugTextManager.gd" id="6_yqf8q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
+size = Vector2(129, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
+size = Vector2(26, 52)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(63, 582)
+
+[node name="Block" type="StaticBody2D" parent="."]
+position = Vector2(147, -15)
+scale = Vector2(3.27472, 1.26521)
+
+[node name="Sprite2D" type="Sprite2D" parent="Block"]
+texture = ExtResource("1_21vor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4j51n")
+
+[node name="Block2" type="StaticBody2D" parent="."]
+position = Vector2(424, -126)
+scale = Vector2(1, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Block2"]
+texture = ExtResource("1_21vor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block2"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4j51n")
+
+[node name="Main character" type="Node" parent="."]
+
+[node name="Character body" type="CharacterBody2D" parent="Main character"]
+position = Vector2(56, 447)
+script = ExtResource("2_mxlrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main character/Character body"]
+position = Vector2(-3, 6)
+shape = SubResource("RectangleShape2D_juoog")
+
+[node name="Sprite2D" type="Sprite2D" parent="Main character/Character body"]
+texture = ExtResource("1_nf5ea")
+script = ExtResource("3_pmc2v")
+
+[node name="State manager" type="Node" parent="Main character"]
+script = ExtResource("5_i8teh")
+
+[node name="Debug text" type="RichTextLabel" parent="."]
+offset_left = -63.0
+offset_top = -582.0
+offset_right = 320.0
+offset_bottom = -317.0
+text = "Vertical velocity : 0"
+script = ExtResource("6_yqf8q")
