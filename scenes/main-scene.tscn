@@ -106,6 +106,7 @@ jump_height = 150.0
 jump_ascension_duration = 0.55
 variable_jump_input_max_duration = 2.0
 variable_jump_min_velocity_multiplier = 0.5
+coyote_time_duration = 0.25
 sprite = ExtResource("9_5hn0m")
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
