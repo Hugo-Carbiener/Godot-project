@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Script" path="res://assets/scritps/statemachine/StateMachine.gd" id="2_j6nxt"]
-[ext_resource type="Script" path="res://assets/scritps/character.gd" id="2_mxlrn"]
+[ext_resource type="Script" path="res://assets/scritps/PlayerPhysicsManager.gd" id="2_mxlrn"]
 [ext_resource type="Script" path="res://assets/scritps/InputManager.gd" id="2_qsna4"]
 [ext_resource type="Script" path="res://assets/scritps/PlayerSpriteController.gd" id="3_pmc2v"]
 [ext_resource type="Script" path="res://assets/scritps/statemachine/states/PlayerRun.gd" id="6_tamy0"]
@@ -46,11 +46,22 @@ texture = ExtResource("1_21vor")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_4j51n")
 
+[node name="Block3" type="StaticBody2D" parent="."]
+position = Vector2(558, 130)
+scale = Vector2(17.085, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Block3"]
+texture = ExtResource("1_21vor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block3"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4j51n")
+
 [node name="Main character" type="Node" parent="."]
 script = ExtResource("2_qsna4")
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-position = Vector2(37, 454)
+position = Vector2(528, 232)
 script = ExtResource("2_mxlrn")
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
@@ -71,6 +82,8 @@ sprite = ExtResource("1_nf5ea")
 
 [node name="Jump" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("7_540ha")
+jump_height = 200.0
+jump_ascension_duration = 0.8
 sprite = ExtResource("9_5hn0m")
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
@@ -81,6 +94,8 @@ sprite = ExtResource("11_00abt")
 
 [node name="Fall" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("12_fe2yd")
+fall_duration = 0.5
+max_fall_velocity = 600.0
 sprite = ExtResource("13_cefen")
 
 [node name="Debug text" type="RichTextLabel" parent="."]
