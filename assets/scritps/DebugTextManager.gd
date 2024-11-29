@@ -2,9 +2,9 @@ extends RichTextLabel
 class_name DebugTextManager
 
 @onready
-var physics_body = $"../Main character/Character body"
+var physics_body = $"../../Main character/Character body"
 @onready
-var state_machine = $"../Main character/StateMachine"
+var state_machine = $"../../Main character/StateMachine"
 
 func _process(delta: float) -> void:
 	text = ""

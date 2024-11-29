@@ -12,7 +12,7 @@ func get_gravity() -> float:
 	return fall_gravity
 
 func can_enter() -> bool:
-	return super() and !player_physics_body.is_on_floor()  and player_physics_body.velocity.y > 0
+	return super() and !player_physics_body.is_on_floor() and player_physics_body.velocity.y > 0
 	
 func physics_update(delta: float):
 	player_physics_body.velocity.y += get_gravity() * delta
