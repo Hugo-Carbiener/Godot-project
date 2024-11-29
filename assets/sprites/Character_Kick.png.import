@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcwnhl8evkmo5"
-path="res://.godot/imported/Character_Slide.png-95b12a09e55562ee70493e8f78f7ac11.ctex"
+uid="uid://1wu1nc7wmm82"
+path="res://.godot/imported/Character_Kick.png-f0df3833748e0dfb15a6477c66a860e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character_Slide.png"
-dest_files=["res://.godot/imported/Character_Slide.png-95b12a09e55562ee70493e8f78f7ac11.ctex"]
+source_file="res://assets/sprites/Character_Kick.png"
+dest_files=["res://.godot/imported/Character_Kick.png-f0df3833748e0dfb15a6477c66a860e2.ctex"]
 
 [params]
 

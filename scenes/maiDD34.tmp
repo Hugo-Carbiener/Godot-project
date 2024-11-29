@@ -50,14 +50,14 @@ shape = SubResource("RectangleShape2D_4j51n")
 script = ExtResource("2_qsna4")
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-position = Vector2(37, 454)
+position = Vector2(56, 447)
 script = ExtResource("2_mxlrn")
 
-[node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main character/Character body"]
 position = Vector2(-3, 6)
 shape = SubResource("RectangleShape2D_juoog")
 
-[node name="Sprite" type="Sprite2D" parent="Main character/Character body"]
+[node name="Sprite2D" type="Sprite2D" parent="Main character/Character body"]
 texture = ExtResource("1_nf5ea")
 script = ExtResource("3_pmc2v")
 
@@ -75,8 +75,6 @@ sprite = ExtResource("9_5hn0m")
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("8_7o1gs")
-collider_size = Vector2(54, 28)
-collider_position = Vector2(3, 18)
 sprite = ExtResource("11_00abt")
 
 [node name="Fall" type="Node" parent="Main character/StateMachine"]

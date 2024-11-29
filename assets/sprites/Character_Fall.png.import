@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1wu1nc7wmm82"
-path="res://.godot/imported/Character_Kick.png-ce98ce64842dfb4e3fbc6b9a93b6e6f0.ctex"
+uid="uid://dyx3rj1ul4n7h"
+path="res://.godot/imported/Character_Fall.png-3d709a0bcfe62d76677e9d8c1ddc10c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character_Kick.png"
-dest_files=["res://.godot/imported/Character_Kick.png-ce98ce64842dfb4e3fbc6b9a93b6e6f0.ctex"]
+source_file="res://assets/sprites/Character_Fall.png"
+dest_files=["res://.godot/imported/Character_Fall.png-3d709a0bcfe62d76677e9d8c1ddc10c2.ctex"]
 
 [params]
 

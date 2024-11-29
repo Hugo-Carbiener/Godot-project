@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=13 format=3 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
@@ -10,10 +10,6 @@
 [ext_resource type="Script" path="res://assets/scritps/DebugTextManager.gd" id="6_yqf8q"]
 [ext_resource type="Script" path="res://assets/scritps/statemachine/states/PlayerJump.gd" id="7_540ha"]
 [ext_resource type="Script" path="res://assets/scritps/statemachine/states/PlayerSlide.gd" id="8_7o1gs"]
-[ext_resource type="Texture2D" uid="uid://dam1jw1yh0i2l" path="res://assets/sprites/Character_Jump.png" id="9_5hn0m"]
-[ext_resource type="Texture2D" uid="uid://bcwnhl8evkmo5" path="res://assets/sprites/Character_Slide.png" id="11_00abt"]
-[ext_resource type="Script" path="res://assets/scritps/statemachine/states/PlayerFall.gd" id="12_fe2yd"]
-[ext_resource type="Texture2D" uid="uid://dyx3rj1ul4n7h" path="res://assets/sprites/Character_Fall.png" id="13_cefen"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
 size = Vector2(129, 128)
@@ -50,14 +46,14 @@ shape = SubResource("RectangleShape2D_4j51n")
 script = ExtResource("2_qsna4")
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-position = Vector2(37, 454)
+position = Vector2(56, 447)
 script = ExtResource("2_mxlrn")
 
-[node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main character/Character body"]
 position = Vector2(-3, 6)
 shape = SubResource("RectangleShape2D_juoog")
 
-[node name="Sprite" type="Sprite2D" parent="Main character/Character body"]
+[node name="Sprite2D" type="Sprite2D" parent="Main character/Character body"]
 texture = ExtResource("1_nf5ea")
 script = ExtResource("3_pmc2v")
 
@@ -67,21 +63,13 @@ initial_state = NodePath("Run")
 
 [node name="Run" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("6_tamy0")
-sprite = ExtResource("1_nf5ea")
+move_speed = null
 
 [node name="Jump" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("7_540ha")
-sprite = ExtResource("9_5hn0m")
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("8_7o1gs")
-collider_size = Vector2(54, 28)
-collider_position = Vector2(3, 18)
-sprite = ExtResource("11_00abt")
-
-[node name="Fall" type="Node" parent="Main character/StateMachine"]
-script = ExtResource("12_fe2yd")
-sprite = ExtResource("13_cefen")
 
 [node name="Debug text" type="RichTextLabel" parent="."]
 offset_left = -63.0
