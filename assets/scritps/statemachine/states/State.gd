@@ -14,7 +14,7 @@ signal Transitioned
 var can_exit = true
 
 func can_enter() -> bool:
-	return state_machine.current_state.can_exit
+	return true
 
 func enter(): 
 	if sprite: 

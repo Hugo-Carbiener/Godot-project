@@ -20,7 +20,9 @@ func get_gravity() -> float:
 	return jump_gravity
 
 func can_enter() -> bool:
-	return super() and (player_physics_body.is_on_floor() or is_coyote_time_valid) 
+	var onFloor = player_physics_body.is_on_floor()
+	var coyote = is_coyote_time_valid(player_physics_body.coyote_time_start) 
+	return super() and (onFloor or coyote) 
 	
 func enter():
 	super()
@@ -34,15 +36,16 @@ func physics_update(delta: float):
 	# increment variable input jump timer
 	variable_jump_input_timer += delta
 	
-	# on early release we precipitate the fall. If the key is never released or if the timer was exceeded, the jump keeps its normal behavior
-	if Input.is_action_just_released("jump") and variable_jump_input_timer < variable_jump_input_max_duration:
-		player_physics_body.velocity.y *= max(variable_jump_input_timer / variable_jump_input_max_duration, variable_jump_min_velocity_multiplier)
-	
 	if player_physics_body.velocity.y > 0 and !player_physics_body.is_on_floor():
 		state_machine.transition_to("fall")
 		
 	if 	player_physics_body.velocity.y == 0 and player_physics_body.is_on_floor():
 		state_machine.transition_to("run")
+
+# on early release we precipitate the fall. If the key is never released or if the timer was exceeded, the jump keeps its normal behavior
+func on_jump_early_release():
+	if variable_jump_input_timer < variable_jump_input_max_duration:
+		player_physics_body.velocity.y *= max(variable_jump_input_timer / variable_jump_input_max_duration, variable_jump_min_velocity_multiplier)
 
 func is_coyote_time_valid(coyote_time_start_timestamp: float) -> bool:
 	return Time.get_unix_time_from_system() - coyote_time_start_timestamp <= coyote_time_duration

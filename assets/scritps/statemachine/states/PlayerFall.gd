@@ -4,7 +4,6 @@ class_name PlayerFall
 @export var fall_duration : float
 @export var max_fall_velocity : float
 
-
 @onready var player_jump_state = $"../Jump"
 @onready var fall_gravity : float = (-2.0 * player_jump_state.jump_height) / (player_jump_state.jump_ascension_duration * fall_duration) * -1
 

@@ -25,14 +25,20 @@ func _physics_process(delta):
 		current_state.physics_update(delta)
 
 func on_child_transition(state, new_state_name):
+	if (state is PlayerFall and new_state_name == "jump"):
+		print("pouet")
+	
 	if state != current_state or state.name.to_lower() == new_state_name.to_lower(): return
 		
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state: return
 		
 	if current_state:
-		current_state.exit()
-	
+		if (current_state.can_exit):
+			current_state.exit()
+		else :
+			return;
+				
 	if new_state.can_enter():
 		new_state.enter()
 		current_state = new_state
