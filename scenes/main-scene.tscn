@@ -93,7 +93,7 @@ script = ExtResource("2_qsna4")
 
 [node name="StateMachine" type="Node" parent="Main character" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_j6nxt")
-initial_state = NodePath("Run")
+initial_state = NodePath("Fall")
 
 [node name="Run" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("6_tamy0")
@@ -102,10 +102,10 @@ sprite = ExtResource("1_nf5ea")
 
 [node name="Jump" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("7_540ha")
-jump_height = 950.0
-jump_ascension_duration = 3.0
-variable_jump_input_max_duration = 1.0
-variable_jump_min_velocity_multiplier = 0.3
+jump_height = 150.0
+jump_ascension_duration = 0.55
+variable_jump_input_max_duration = 2.0
+variable_jump_min_velocity_multiplier = 0.5
 sprite = ExtResource("9_5hn0m")
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
@@ -116,16 +116,16 @@ sprite = ExtResource("11_00abt")
 
 [node name="Fall" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("12_fe2yd")
-fall_duration = 0.5
-max_fall_velocity = 600.0
+fall_duration = 0.3
+max_fall_velocity = 800.0
 sprite = ExtResource("13_cefen")
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-position = Vector2(53, 338)
+position = Vector2(1784, 312)
 script = ExtResource("2_mxlrn")
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
-position = Vector2(-3, 6)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_juoog")
 
 [node name="Sprite" type="Sprite2D" parent="Main character/Character body"]
@@ -150,15 +150,15 @@ text = "Vertical velocity : 0"
 script = ExtResource("6_yqf8q")
 
 [node name="Normal jump" type="RichTextLabel" parent="."]
-offset_left = 1321.0
+offset_left = 1337.0
 offset_top = -278.0
-offset_right = 1704.0
-offset_bottom = -13.0
+offset_right = 1441.0
+offset_bottom = -246.0
 text = "Normal jump"
 
 [node name="Long jump" type="RichTextLabel" parent="."]
 offset_left = 2865.0
 offset_top = -270.0
-offset_right = 3248.0
-offset_bottom = -5.0
+offset_right = 2953.0
+offset_bottom = -246.0
 text = "Long jump"
