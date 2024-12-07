@@ -35,6 +35,17 @@ texture = ExtResource("1_21vor")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_4j51n")
 
+[node name="Block5" type="StaticBody2D" parent="."]
+position = Vector2(89, -262)
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Block5"]
+texture = ExtResource("1_21vor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block5"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4j51n")
+
 [node name="Block2" type="StaticBody2D" parent="."]
 position = Vector2(592, -245)
 scale = Vector2(0.5, 0.5)
@@ -123,7 +134,7 @@ max_fall_velocity = 800.0
 sprite = ExtResource("13_cefen")
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-position = Vector2(-128, 256)
+position = Vector2(-48, 336)
 script = ExtResource("2_mxlrn")
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]

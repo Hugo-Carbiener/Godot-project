@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 	pass
 	
 func getPhysicsDebugText():
-	var text = "PHYSICS\n"
+	var text = "DEBUG - Press R to reload\n"
+	text += "PHYSICS\n"
 	text += "position: " + str(physics_body.position) + "\n"
 	text += "velocity: " + str(physics_body.velocity) + "\n"
 	text += "Is on floor: " + str(physics_body.is_on_floor()) + "\n"

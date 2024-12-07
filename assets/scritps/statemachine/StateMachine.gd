@@ -25,9 +25,6 @@ func _physics_process(delta):
 		current_state.physics_update(delta)
 
 func on_child_transition(state, new_state_name):
-	if (state is PlayerFall and new_state_name == "jump"):
-		print("pouet")
-	
 	if state != current_state or state.name.to_lower() == new_state_name.to_lower(): return
 		
 	var new_state = states.get(new_state_name.to_lower())

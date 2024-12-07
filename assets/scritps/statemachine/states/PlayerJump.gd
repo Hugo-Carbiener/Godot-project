@@ -20,9 +20,7 @@ func get_gravity() -> float:
 	return jump_gravity
 
 func can_enter() -> bool:
-	var onFloor = player_physics_body.is_on_floor()
-	var coyote = is_coyote_time_valid(player_physics_body.coyote_time_start) 
-	return super() and (onFloor or coyote) 
+	return super() and (player_physics_body.is_on_floor() or is_coyote_time_valid(player_physics_body.coyote_time_start)) 
 	
 func enter():
 	super()
