@@ -13,7 +13,7 @@ func can_enter() -> bool:
 
 func enter():
 	super()
-	player_physics_body.velocity.x = move_speed * move_direction	
+	player_physics_body.velocity.x = move_speed * move_direction
 	
 func physics_update(delta: float):
 	if !player_physics_body.is_on_floor():

@@ -4,11 +4,11 @@ class_name State
 @onready
 var state_machine = $".."
 @onready
-var sprite_controller = $"../../Character body/Sprite"
+var animation_controller = $"../../Character body/AnimatedSprite2D"
 @onready
 var player_physics_body = $"../../Character body"
 
-@export var sprite: Resource
+@export var animation_name : String
 signal Transitioned
 
 var can_exit = true
@@ -17,8 +17,8 @@ func can_enter() -> bool:
 	return true
 
 func enter(): 
-	if sprite: 
-		sprite_controller.set_sprite(sprite)
+	if animation_name: 
+		animation_controller.play(animation_name.to_lower())
 	
 func exit():
 	pass
