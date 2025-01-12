@@ -521,8 +521,7 @@ position_smoothing_speed = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"slide"
-frame_progress = 0.865707
+animation = &"fall"
 script = ExtResource("16_swycs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
