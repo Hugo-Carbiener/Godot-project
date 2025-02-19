@@ -796,7 +796,9 @@ animation_name = "idle"
 position = Vector2(-120, 265)
 script = ExtResource("2_mxlrn")
 max_lateral_speed = 300.0
-lateral_acceleration = 1000.0
+lateral_acceleration = 750.0
+lateral_ground_drag_acceleration = 400.0
+lateral_air_drag_acceleration = 125.0
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
 position = Vector2(-3, 6.5)
