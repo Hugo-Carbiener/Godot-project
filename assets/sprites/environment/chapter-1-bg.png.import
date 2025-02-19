@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8636usiuc7wn"
-path="res://.godot/imported/chapter-1_building-back-under-top.png-f433b9486e573207b7880c3fcfca7e1a.ctex"
+uid="uid://dhpkdbpw5kqa2"
+path="res://.godot/imported/chapter-1-bg.png-e204f109a5407298b53934590e148e38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/environment/chapter-1_building-back-under-top.png"
-dest_files=["res://.godot/imported/chapter-1_building-back-under-top.png-f433b9486e573207b7880c3fcfca7e1a.ctex"]
+source_file="res://assets/sprites/environment/chapter-1-bg.png"
+dest_files=["res://.godot/imported/chapter-1-bg.png-e204f109a5407298b53934590e148e38.ctex"]
 
 [params]
 

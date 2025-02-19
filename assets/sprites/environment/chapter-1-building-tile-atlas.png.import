@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqmebqbcroi7w"
-path="res://.godot/imported/chapter-1_building-back-window-top-right.png-8499bd65601b04158dc177135a44e9fc.ctex"
+uid="uid://bhad5roqj6kl1"
+path="res://.godot/imported/chapter-1-building-tile-atlas.png-4d5db2ff95981d1d23d2ba3724293c97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/environment/chapter-1_building-back-window-top-right.png"
-dest_files=["res://.godot/imported/chapter-1_building-back-window-top-right.png-8499bd65601b04158dc177135a44e9fc.ctex"]
+source_file="res://assets/sprites/environment/chapter-1-building-tile-atlas.png"
+dest_files=["res://.godot/imported/chapter-1-building-tile-atlas.png-4d5db2ff95981d1d23d2ba3724293c97.ctex"]
 
 [params]
 
