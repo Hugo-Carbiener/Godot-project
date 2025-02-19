@@ -17,6 +17,10 @@ func physics_update(delta: float):
 	player_physics_body.velocity.y += get_gravity() * delta
 	if player_physics_body.velocity.y > max_fall_velocity:
 		player_physics_body.velocity.y = max_fall_velocity
-	
-	if player_physics_body.is_on_floor():
-		state_machine.transition_to("run")
+
+	if player_physics_body.is_on_floor() :
+		if player_physics_body.velocity.x == 0 :
+			state_machine.transition_to("Idle")
+		
+		if abs(player_physics_body.velocity.x) > 0 :
+			state_machine.transition_to("Run")

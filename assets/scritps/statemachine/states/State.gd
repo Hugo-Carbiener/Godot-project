@@ -28,3 +28,7 @@ func update(_delta: float):
 	
 func physics_update(_delta: float):
 	pass
+	
+func update_lateral_speed(direction : int, delta : float) :
+	player_physics_body.update_lateral_speed(direction, delta)
+	

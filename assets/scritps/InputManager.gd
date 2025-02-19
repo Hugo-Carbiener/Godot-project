@@ -5,6 +5,12 @@ class_name InputManager
 var stateMachine = $"../Main character/StateMachine"
 
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("direction-left"):
+		stateMachine.current_state.update_lateral_speed(-1, delta)
+		
+	if Input.is_action_pressed("direction-right"):
+		stateMachine.current_state.update_lateral_speed(1, delta)
+	
 	if Input.is_action_just_pressed("jump"):
 		stateMachine.transition_to("jump")
 		
