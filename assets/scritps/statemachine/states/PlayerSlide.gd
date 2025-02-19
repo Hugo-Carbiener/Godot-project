@@ -9,6 +9,9 @@ var default_collider_size : Vector2;
 var default_collider_position : Vector2;
 var timer: float
 
+func allow_lateral_movement () -> bool: 
+	return false;
+
 func can_enter() -> bool:
 	return super() and player_physics_body.is_on_floor() and abs(player_physics_body.velocity.x) > 0
 
@@ -23,7 +26,7 @@ func enter():
 	
 func update(_delta: float):
 	if (timer <= 0):
-		state_machine.transition_to("run")
+		state_machine.transition_to("idle")
 	timer -= _delta
 	
 func exit():

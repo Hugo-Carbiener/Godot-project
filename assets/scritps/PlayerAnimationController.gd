@@ -8,4 +8,5 @@ func _process(delta: float) -> void:
 	check_player_orientation()
 	
 func check_player_orientation():
-	scale.x = player_physics_body.velocity.x / abs(player_physics_body.velocity.x)
+	if (player_physics_body.velocity.x != 0) :
+		scale.x = player_physics_body.velocity.x / abs(player_physics_body.velocity.x)

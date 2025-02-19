@@ -816,7 +816,7 @@ texture = ExtResource("9_84wbi")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
 z_index = 10
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"idle"
+animation = &"run"
 script = ExtResource("16_swycs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

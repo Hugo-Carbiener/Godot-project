@@ -22,7 +22,7 @@ func check_coyote_time() :
 func register_coyote_time_start():
 	coyote_time_start = Time.get_unix_time_from_system()
 	
-	
+# Called by the input manager whenever a directionnal input is pressed 
 func update_lateral_speed(direction : int, delta : float) :
 	var added_velocity = lateral_acceleration * delta * direction
 	velocity.x += added_velocity
