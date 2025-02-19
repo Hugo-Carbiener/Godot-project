@@ -36,4 +36,7 @@ func update_lateral_speed(direction : int, delta : float) :
 	if !allow_lateral_movement() : return
 	
 	player_physics_body.update_lateral_speed(direction, delta)
+
+func modify_animation(animationControler : AnimatedSprite2D) : 
+	return
 	

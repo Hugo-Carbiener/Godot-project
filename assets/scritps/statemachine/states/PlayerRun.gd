@@ -17,3 +17,7 @@ func physics_update(delta: float):
 		
 	if abs(player_physics_body.velocity.x) == 0 :
 		state_machine.transition_to("idle")
+
+func modify_animation(animationControler : AnimatedSprite2D) : 
+	animationControler.speed_scale = abs(player_physics_body.velocity.x) / player_physics_body.max_lateral_speed
+	

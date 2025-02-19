@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var stateMachine = $"../StateMachine"
+@onready var state_machine = $"../StateMachine"
 
 @export var max_lateral_speed : float ## The maximum lateral speed the player can naturally reach  
 @export var lateral_acceleration : float ## Acceleration in distance unit per second
@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func check_coyote_time() :
 	if (was_on_floor == true 
 	and is_on_floor() == false 
-	and stateMachine.current_state is not PlayerJump) :
+	and state_machine.current_state is not PlayerJump) :
 		register_coyote_time_start()
 
 func register_coyote_time_start() :
