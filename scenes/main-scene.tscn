@@ -879,6 +879,8 @@ animation_name = "jump"
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("8_7o1gs")
+slide_min_duration = 0.8
+slide_max_duration = 1.2
 slide_initial_velocity = 600.0
 collider_size = Vector2(54, 28)
 collider_position = Vector2(3, 18)

@@ -35,8 +35,6 @@ func update_lateral_speed(direction : int, delta : float) :
 	velocity.x += added_velocity
 	if abs(velocity.x) > max_lateral_speed :
 		velocity.x = max_lateral_speed * direction
-		
-	lateral_movement_input = true
 
 func apply_drag(delta : float) :
 	if lateral_movement_input : 

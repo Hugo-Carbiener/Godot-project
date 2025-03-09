@@ -13,7 +13,6 @@ func can_enter() -> bool:
 func exit() :
 	animation_controller.speed_scale = 1
 	
-	
 func physics_update(_delta: float):
 	if !player_physics_body.is_on_floor():
 		state_machine.transition_to("fall")

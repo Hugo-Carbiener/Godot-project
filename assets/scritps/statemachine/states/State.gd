@@ -33,6 +33,7 @@ func physics_update(_delta: float):
 	pass
 	
 func update_lateral_speed(direction : int, delta : float) :
+	player_physics_body.lateral_movement_input = true
 	if !allow_lateral_movement() : return
 	
 	player_physics_body.update_lateral_speed(direction, delta)

@@ -14,13 +14,15 @@ func _process(delta: float) -> void:
 	pass
 	
 func getPhysicsDebugText():
-	var text = "DEBUG - Press R to reload\n"
-	text += "PHYSICS\n"
-	text += "position: " + str(physics_body.position) + "\n"
-	text += "velocity: " + str(physics_body.velocity) + "\n"
-	text += "Is on floor: " + str(physics_body.is_on_floor()) + "\n"
-	return text
+	var debug_text = "DEBUG - Press R to reload\n"
+	debug_text += "PHYSICS\n"
+	debug_text += "position: " + str(physics_body.position) + "\n"
+	debug_text += "velocity: " + str(physics_body.velocity) + "\n"
+	debug_text += "Is on floor: " + str(physics_body.is_on_floor()) + "\n"
+	debug_text += "Lateral input: " + str(physics_body.lateral_movement_input) + "\n"
+
+	return debug_text
 	
 func getStateDebugText():
-	var text = "State: " + state_machine.current_state.name.to_lower() + "\n"
-	return text
+	var debug_text = "State: " + state_machine.current_state.name.to_lower() + "\n"
+	return debug_text
