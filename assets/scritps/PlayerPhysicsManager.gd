@@ -7,14 +7,16 @@ extends CharacterBody2D
 @export var lateral_ground_drag_acceleration : float ## Acceleration from the force opposed to movement when on the ground
 @export var lateral_air_drag_acceleration : float ## Acceleration from the force opposed to movement when airborne
 
-var lateral_movement_input : bool = false; ## Whether there was a lateral directionnal input this frame
+var lateral_movement_input : bool = false ## Whether there was a lateral directionnal input this frame
 var was_on_floor : bool = false
+var previous_speed : Vector2 ## The speed at the previous frame
 var coyote_time_start : float = 0
 
 func _physics_process(delta: float) -> void:
 	check_coyote_time()
 	
 	was_on_floor = is_on_floor()
+	previous_speed = velocity
 	apply_drag(delta)
 	move_and_slide()
 	
