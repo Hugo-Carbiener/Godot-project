@@ -24,6 +24,7 @@ func physics_update(_delta: float):
 func modify_animation(animationControler : AnimatedSprite2D) : 
 	animationControler.speed_scale = abs(player_physics_body.velocity.x) / player_physics_body.max_lateral_speed
 	
+	## slow animation 
 	if (player_physics_body.lateral_movement_input) :
 		var delta_speed = player_physics_body.previous_speed - player_physics_body.velocity
 		if (player_physics_body.previous_speed.x * player_physics_body.velocity.x > 0 && delta_speed.x * player_physics_body.velocity.x > 0) :
