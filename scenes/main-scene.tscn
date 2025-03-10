@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=103 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dam1jw1yh0i2l" path="res://assets/sprites/Character_Jump.png" id="9_5hn0m"]
 [ext_resource type="Texture2D" uid="uid://dhpkdbpw5kqa2" path="res://assets/sprites/environment/chapter-1-bg.png" id="9_84wbi"]
 [ext_resource type="Texture2D" uid="uid://bcwnhl8evkmo5" path="res://assets/sprites/Character_Slide.png" id="11_00abt"]
+[ext_resource type="Script" uid="uid://ecir55mvp1jh" path="res://assets/scritps/statemachine/states/PlayerWallGrind.gd" id="12_5ioq0"]
 [ext_resource type="Script" uid="uid://bwovhaam2lqqh" path="res://assets/scritps/statemachine/states/PlayerFall.gd" id="12_fe2yd"]
 [ext_resource type="Texture2D" uid="uid://dyx3rj1ul4n7h" path="res://assets/sprites/Character_Fall.png" id="13_cefen"]
 [ext_resource type="Texture2D" uid="uid://1wu1nc7wmm82" path="res://assets/sprites/Character_Kick.png" id="14_o1uja"]
@@ -24,12 +25,13 @@
 [ext_resource type="Texture2D" uid="uid://c0gfyotkdi532" path="res://assets/sprites/environment/chapter-1-props-tile-atlas.png" id="17_3aygs"]
 [ext_resource type="Texture2D" uid="uid://bhad5roqj6kl1" path="res://assets/sprites/environment/chapter-1-building-tile-atlas.png" id="18_ulxi5"]
 [ext_resource type="Texture2D" uid="uid://e1a5ah7sbhsr" path="res://assets/sprites/Character_Slow.png" id="19_wtg5e"]
+[ext_resource type="Texture2D" uid="uid://dy5euwas4rr58" path="res://assets/sprites/Character_Wall-grind.png" id="20_2ojer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
-size = Vector2(26, 51)
+size = Vector2(34, 51)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mo3nr"]
 atlas = ExtResource("13_cefen")
@@ -255,6 +257,38 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("19_wtg5e")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_op0ni"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k52ex"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0kw3"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dixok"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4aq2"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpu56"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvwev"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo58h"]
+atlas = ExtResource("20_2ojer")
+region = Rect2(448, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_p5m8t"]
 animations = [{
 "frames": [{
@@ -458,6 +492,35 @@ animations = [{
 }],
 "loop": true,
 "name": &"slow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op0ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k52ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0kw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dixok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4aq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpu56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvwev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo58h")
+}],
+"loop": true,
+"name": &"wall_grind",
 "speed": 5.0
 }]
 
@@ -867,6 +930,8 @@ script = ExtResource("6_tamy0")
 move_speed = 300
 move_direction = 1
 animation_name = "run"
+collider_size = Vector2(57, 51)
+collider_position = Vector2(-1.5, 6.5)
 
 [node name="Jump" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("7_540ha")
@@ -876,25 +941,40 @@ variable_jump_input_max_duration = 2.0
 variable_jump_min_velocity_multiplier = 0.5
 coyote_time_duration = 0.25
 animation_name = "jump"
+collider_size = Vector2(34, 45)
+collider_position = Vector2(5, -2.5)
 
 [node name="Slide" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("8_7o1gs")
 slide_min_duration = 0.8
 slide_max_duration = 1.2
 slide_initial_velocity = 600.0
+animation_name = "slide"
 collider_size = Vector2(54, 28)
 collider_position = Vector2(3, 18)
-animation_name = "slide"
 
 [node name="Fall" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("12_fe2yd")
 fall_duration = 0.3
 max_fall_velocity = 800.0
 animation_name = "fall"
+collider_size = Vector2(26, 58)
+collider_position = Vector2(1, 3)
 
 [node name="Idle" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("8_ewef8")
 animation_name = "idle"
+collider_size = Vector2(26, 51)
+collider_position = Vector2(-5, 6.5)
+
+[node name="Wall grind" type="Node" parent="Main character/StateMachine"]
+script = ExtResource("12_5ioq0")
+gravity_coefficient = 0.2
+fall_duration = 0.3
+max_fall_velocity = 800.0
+animation_name = "wall_grind"
+collider_size = Vector2(20, 63)
+collider_position = Vector2(5, 0.5)
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
 position = Vector2(-149, -154)
@@ -905,7 +985,7 @@ lateral_ground_drag_acceleration = 500.0
 lateral_air_drag_acceleration = 125.0
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
-position = Vector2(-3, 6.5)
+position = Vector2(-5, 6.5)
 shape = SubResource("RectangleShape2D_juoog")
 debug_color = Color(0.853844, 0.350853, 0.315144, 0.960784)
 
@@ -919,7 +999,7 @@ editor_draw_screen = false
 z_index = 3
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"slow"
+animation = &"idle"
 script = ExtResource("16_swycs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

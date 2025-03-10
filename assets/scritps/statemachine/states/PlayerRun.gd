@@ -9,8 +9,9 @@ var coyote_time_time : float = 0
 
 func can_enter() -> bool:
 	return super() and player_physics_body.is_on_floor() and abs(player_physics_body.velocity.x) > 0
-	
+
 func exit() :
+	super()
 	animation_controller.speed_scale = 1
 	
 func physics_update(_delta: float):
