@@ -11,7 +11,7 @@ func get_gravity() -> float :
 func physics_update(delta: float) :
 	super(delta)
 	
-	if !player_physics_body.is_on_wall() : 
+	if !player_physics_body.is_on_wall_only() || !player_physics_body.lateral_movement_input: 
 		state_machine.transition_to("fall")
 
 func sprite_is_reversed() -> bool:

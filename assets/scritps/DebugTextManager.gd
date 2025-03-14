@@ -20,7 +20,7 @@ func getPhysicsDebugText():
 	debug_text += "velocity: " + str(physics_body.velocity) + "\n"
 	debug_text += "Is on floor: " + str(physics_body.is_on_floor()) + "\n"
 	debug_text += "Is against wall: " + str(physics_body.is_on_wall()) + "\n"
-	debug_text += "Lateral input: " + str(physics_body.lateral_movement_input) + "\n"
+	debug_text += "\nLateral input: " + str(physics_body.lateral_movement_input) + "\n"
 
 	return debug_text
 	

@@ -9,8 +9,10 @@ func _process(delta: float) -> void:
 	state_machine.current_state.modify_animation(self)
 	
 func check_player_orientation():
-	if (player_physics_body.velocity.x != 0) :
+	if player_physics_body.velocity.x != 0 : 
 		scale.x = player_physics_body.velocity.x / abs(player_physics_body.velocity.x)
+	else : 
+		scale.x = 1
 		
-		if state_machine.current_state.sprite_is_reversed() : 
-			scale.x *= -1;
+	if state_machine.current_state.sprite_is_reversed() : 
+		scale.x *= -1;

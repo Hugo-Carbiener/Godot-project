@@ -47,4 +47,3 @@ func apply_drag(delta : float) :
 	var drag_value = min(abs(velocity.x), drag_acceleration_value * delta)
 	velocity.x -= (velocity.x / abs(velocity.x)) * drag_value
 	lateral_movement_input = false
-	
