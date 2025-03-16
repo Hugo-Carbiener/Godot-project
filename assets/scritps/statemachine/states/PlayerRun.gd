@@ -18,7 +18,7 @@ func physics_update(_delta: float):
 	if !player_physics_body.is_on_floor():
 		state_machine.transition_to("fall")
 	
-	if abs(player_physics_body.velocity.x) == 0 :
+	if abs(player_physics_body.velocity.x) == 0 || !player_physics_body.moved_last_frame():
 		state_machine.transition_to("idle")
 
 func modify_animation(animationControler : AnimatedSprite2D) : 

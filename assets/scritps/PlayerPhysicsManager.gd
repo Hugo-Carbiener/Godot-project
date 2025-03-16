@@ -10,6 +10,7 @@ extends CharacterBody2D
 var lateral_movement_input : bool = false ## Whether there was a lateral directionnal input this frame
 var was_on_floor : bool = false
 var previous_speed : Vector2 ## The speed at the previous frame
+var previous_position : Vector2 ## The position at the previous frame 
 var coyote_time_start : float = 0
 
 func _physics_process(delta: float) -> void:
@@ -17,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	
 	was_on_floor = is_on_floor()
 	previous_speed = velocity
+	previous_position = position
 	apply_drag(delta)
 	move_and_slide()
 	
@@ -47,3 +49,6 @@ func apply_drag(delta : float) :
 	var drag_value = min(abs(velocity.x), drag_acceleration_value * delta)
 	velocity.x -= (velocity.x / abs(velocity.x)) * drag_value
 	lateral_movement_input = false
+	
+func moved_last_frame() -> bool :
+	return previous_position != position;
