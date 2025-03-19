@@ -16,6 +16,9 @@ class_name PlayerJump
 
 var variable_jump_input_timer : float
 
+static func get_state_name() -> String: 
+	return "jump"
+
 func get_gravity() -> float:
 	return jump_gravity
 

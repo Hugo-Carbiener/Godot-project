@@ -7,6 +7,9 @@ class_name PlayerSlide
 @export var slide_initial_velocity : float
 var timer: float
 
+static func get_state_name() -> String: 
+	return "jump"
+
 func allow_lateral_movement () -> bool: 
 	return false;
 

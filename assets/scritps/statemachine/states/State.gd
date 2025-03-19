@@ -18,6 +18,10 @@ signal Transitioned
 
 var can_exit = true
 
+static func get_state_name() -> String:
+	assert(false)
+	return ""
+
 func can_enter() -> bool:
 	return true
 	
