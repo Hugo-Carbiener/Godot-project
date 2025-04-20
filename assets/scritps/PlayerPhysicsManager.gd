@@ -45,7 +45,8 @@ func apply_drag(delta : float) :
 		
 	if velocity.x == 0 : return
 	
-	var drag_acceleration_value = lateral_ground_drag_acceleration if is_on_floor() else lateral_air_drag_acceleration
+	var drag_enabled = is_on_floor() && !state_machine.current_state.prevents_drag()
+	var drag_acceleration_value = lateral_ground_drag_acceleration if drag_enabled else lateral_air_drag_acceleration
 	var drag_value = min(abs(velocity.x), drag_acceleration_value * delta)
 	velocity.x -= (velocity.x / abs(velocity.x)) * drag_value
 	lateral_movement_input = false

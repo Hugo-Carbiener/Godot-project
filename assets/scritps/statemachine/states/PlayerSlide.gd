@@ -8,7 +8,7 @@ class_name PlayerSlide
 var timer: float
 
 static func get_state_name() -> String: 
-	return "jump"
+	return "slide"
 
 func allow_lateral_movement () -> bool: 
 	return false;
@@ -24,10 +24,14 @@ func enter():
 func update(_delta: float):
 	if !player_physics_body.is_on_floor() :
 		state_machine.transition_to("fall")
+		return
 
 	if (timer >= slide_max_duration) :
 		state_machine.transition_to("idle")
+		return
 		
 	if (timer >= slide_min_duration && player_physics_body.lateral_movement_input) :
 		state_machine.transition_to("idle")
+		return
+		
 	timer += _delta
