@@ -50,5 +50,6 @@ func update_lateral_speed(direction : int, delta : float) :
 
 func modify_animation(animationControler : AnimatedSprite2D) : return
 func allow_lateral_movement() -> bool: return true;
+func allow_input() -> bool : return true;
 func sprite_is_reversed() -> bool:	return false;
 func prevents_drag() -> bool: return false

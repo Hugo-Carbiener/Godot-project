@@ -29,4 +29,5 @@ func physics_update(_delta: float):
 		return
 	pass
 	
+func allow_input() -> bool : return false
 func prevents_drag() -> bool : return true
