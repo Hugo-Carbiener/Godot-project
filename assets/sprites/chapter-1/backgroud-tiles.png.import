@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu0swl5u1t0hr"
-path="res://.godot/imported/tile-atlas-plateforms.png-7c9c74a74a03354c0a1c3c1747f9d787.ctex"
+uid="uid://cgvisfvvmaqfw"
+path="res://.godot/imported/backgroud-tiles.png-ff9cfa4999ac3b8e0a677b5df97aa6ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/chapter-1/tile-atlas-plateforms.png"
-dest_files=["res://.godot/imported/tile-atlas-plateforms.png-7c9c74a74a03354c0a1c3c1747f9d787.ctex"]
+source_file="res://assets/sprites/chapter-1/backgroud-tiles.png"
+dest_files=["res://.godot/imported/backgroud-tiles.png-ff9cfa4999ac3b8e0a677b5df97aa6ae.ctex"]
 
 [params]
 
