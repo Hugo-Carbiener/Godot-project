@@ -46,10 +46,10 @@ func update_lateral_speed(direction : int, delta : float) :
 	player_physics_body.lateral_movement_input = true
 	if !allow_lateral_movement() : return
 	
-	player_physics_body.update_lateral_speed(direction, delta)
+	player_physics_body.compute_input_lateral_speed(direction, delta)
 
 func modify_animation(animationControler : AnimatedSprite2D) : return
 func allow_lateral_movement() -> bool: return true;
 func allow_input() -> bool : return true;
 func sprite_is_reversed() -> bool:	return false;
-func prevents_drag() -> bool: return false
+func prevent_drag() -> bool: return false

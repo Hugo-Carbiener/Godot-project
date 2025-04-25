@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=114 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://b5xkrp584rx8" path="res://assets/sprites/Character_Roll.png" id="19_8kt5s"]
 [ext_resource type="Texture2D" uid="uid://e1a5ah7sbhsr" path="res://assets/sprites/Character_Slow.png" id="19_wtg5e"]
 [ext_resource type="Texture2D" uid="uid://dy5euwas4rr58" path="res://assets/sprites/Character_Wall-grind.png" id="20_2ojer"]
+[ext_resource type="Script" uid="uid://x8o8yoipg014" path="res://assets/scritps/SpeedBoostManager.gd" id="25_8kt5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
 size = Vector2(128, 128)
@@ -1042,6 +1043,8 @@ collider_position = Vector2(2, 9)
 
 [node name="Roll" type="Node" parent="Main character/StateMachine"]
 script = ExtResource("13_qvo05")
+has_boost_frame = true
+boost_frame_timing = 1
 animation_name = "roll"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
@@ -1069,8 +1072,15 @@ editor_draw_screen = false
 z_index = 3
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"roll"
+animation = &"idle"
 script = ExtResource("16_swycs")
+
+[node name="Speed boost manager" type="Node" parent="Main character"]
+script = ExtResource("25_8kt5s")
+additional_speed = 100.0
+boost_duration = 1.0
+boost_fade_duration = 0.5
+input_time_span = 0.2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
