@@ -16,6 +16,9 @@ class_name PlayerJump
 
 var variable_jump_input_timer : float
 
+static func get_state_name() -> String: 
+	return "jump"
+
 func get_gravity() -> float:
 	return jump_gravity
 
@@ -36,9 +39,11 @@ func physics_update(delta: float):
 	
 	if player_physics_body.velocity.y > 0 and !player_physics_body.is_on_floor():
 		state_machine.transition_to("fall")
+		return
 		
 	if 	player_physics_body.velocity.y == 0 and player_physics_body.is_on_floor():
 		state_machine.transition_to("run")
+		return
 
 # on early release we precipitate the fall. If the key is never released or if the timer was exceeded, the jump keeps its normal behavior
 func on_jump_early_release():

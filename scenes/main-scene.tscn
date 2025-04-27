@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=116 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
@@ -19,13 +19,17 @@
 [ext_resource type="Script" uid="uid://ecir55mvp1jh" path="res://assets/scritps/statemachine/states/PlayerWallGrind.gd" id="12_5ioq0"]
 [ext_resource type="Script" uid="uid://bwovhaam2lqqh" path="res://assets/scritps/statemachine/states/PlayerFall.gd" id="12_fe2yd"]
 [ext_resource type="Texture2D" uid="uid://dyx3rj1ul4n7h" path="res://assets/sprites/Character_Fall.png" id="13_cefen"]
+[ext_resource type="Script" uid="uid://cql1bc20ug24q" path="res://assets/scritps/statemachine/states/PlayerRoll.gd" id="13_qvo05"]
 [ext_resource type="Texture2D" uid="uid://1wu1nc7wmm82" path="res://assets/sprites/Character_Kick.png" id="14_o1uja"]
 [ext_resource type="Texture2D" uid="uid://ds32is2wediwi" path="res://assets/sprites/Character_Run.png" id="15_r4vnx"]
 [ext_resource type="Script" uid="uid://prjdtmbb5gd7" path="res://assets/scritps/PlayerAnimationController.gd" id="16_swycs"]
 [ext_resource type="Texture2D" uid="uid://c0gfyotkdi532" path="res://assets/sprites/environment/chapter-1-props-tile-atlas.png" id="17_3aygs"]
 [ext_resource type="Texture2D" uid="uid://bhad5roqj6kl1" path="res://assets/sprites/environment/chapter-1-building-tile-atlas.png" id="18_ulxi5"]
+[ext_resource type="Texture2D" uid="uid://b5xkrp584rx8" path="res://assets/sprites/Character_Roll.png" id="19_8kt5s"]
 [ext_resource type="Texture2D" uid="uid://e1a5ah7sbhsr" path="res://assets/sprites/Character_Slow.png" id="19_wtg5e"]
 [ext_resource type="Texture2D" uid="uid://dy5euwas4rr58" path="res://assets/sprites/Character_Wall-grind.png" id="20_2ojer"]
+[ext_resource type="Script" uid="uid://x8o8yoipg014" path="res://assets/scritps/SpeedBoostManager.gd" id="25_8kt5s"]
+[ext_resource type="Shader" uid="uid://d06dngyu7alum" path="res://assets/shaders/solid-white.gdshader" id="26_ja8h8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
 size = Vector2(128, 128)
@@ -159,6 +163,38 @@ region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lh7n2"]
 atlas = ExtResource("14_o1uja")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coyvs"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p4wq"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml38f"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs6b5"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ogrw"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5eci"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54isw"]
+atlas = ExtResource("19_8kt5s")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ddtm"]
+atlas = ExtResource("19_8kt5s")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4m177"]
@@ -403,8 +439,37 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lh7n2")
 }],
-"loop": true,
+"loop": false,
 "name": &"kick",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coyvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p4wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml38f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs6b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ogrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5eci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54isw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ddtm")
+}],
+"loop": false,
+"name": &"roll",
 "speed": 10.0
 }, {
 "frames": [{
@@ -523,6 +588,11 @@ animations = [{
 "name": &"wall_grind",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja8h8"]
+shader = ExtResource("26_ja8h8")
+shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/alpha = 0.0
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5lckr"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 2, 196608, 0, 3, 262144, 0, 4, 327680, 0, 5)
@@ -957,6 +1027,7 @@ collider_position = Vector2(3, 18)
 script = ExtResource("12_fe2yd")
 fall_duration = 0.3
 max_fall_velocity = 800.0
+max_velocity_roll_coef = 0.95
 animation_name = "fall"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
@@ -976,13 +1047,22 @@ animation_name = "wall_grind"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
+[node name="Roll" type="Node" parent="Main character/StateMachine"]
+script = ExtResource("13_qvo05")
+has_boost_frame = true
+boost_frame_timing = 1
+animation_name = "roll"
+collider_size = Vector2(32, 46)
+collider_position = Vector2(2, 9)
+
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
+z_index = 100
 position = Vector2(-149, -154)
 script = ExtResource("2_mxlrn")
 max_lateral_speed = 300.0
 lateral_acceleration = 750.0
 lateral_ground_drag_acceleration = 650.0
-lateral_air_drag_acceleration = 125.0
+lateral_air_drag_acceleration = 75.0
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
 position = Vector2(2, 9)
@@ -996,11 +1076,20 @@ position_smoothing_speed = 10.0
 editor_draw_screen = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
-z_index = 3
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"run"
+animation = &"wall_grind"
 script = ExtResource("16_swycs")
+
+[node name="Speed boost manager" type="Node" parent="Main character"]
+script = ExtResource("25_8kt5s")
+additional_speed = 200.0
+boost_duration = 1.5
+boost_fade_duration = 0.5
+input_time_span = 0.2
+ghost_amount = 7
+ghost_shader = SubResource("ShaderMaterial_ja8h8")
+ghost_colors = Array[Color]([Color(0.180392, 0.0392157, 0.188235, 1), Color(0.309804, 0.0784314, 0.27451, 1), Color(0.435294, 0.113725, 0.360784, 1), Color(0.431373, 0.317647, 0.505882, 1), Color(0.427451, 0.521569, 0.647059, 1), Color(0.423529, 0.72549, 0.788235, 1), Color(0.423529, 0.929412, 0.929412, 1)])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
