@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://b5xkrp584rx8" path="res://assets/sprites/Character_Roll.png" id="19_8kt5s"]
 [ext_resource type="Texture2D" uid="uid://e1a5ah7sbhsr" path="res://assets/sprites/Character_Slow.png" id="19_wtg5e"]
 [ext_resource type="Texture2D" uid="uid://dy5euwas4rr58" path="res://assets/sprites/Character_Wall-grind.png" id="20_2ojer"]
-[ext_resource type="Script" path="res://assets/scritps/SpeedBoostManager.gd" id="25_8kt5s"]
+[ext_resource type="Script" uid="uid://x8o8yoipg014" path="res://assets/scritps/SpeedBoostManager.gd" id="25_8kt5s"]
 [ext_resource type="Shader" uid="uid://d06dngyu7alum" path="res://assets/shaders/solid-white.gdshader" id="26_ja8h8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
@@ -1083,8 +1083,8 @@ script = ExtResource("16_swycs")
 
 [node name="Speed boost manager" type="Node" parent="Main character"]
 script = ExtResource("25_8kt5s")
-additional_speed = 100.0
-boost_duration = 1.0
+additional_speed = 200.0
+boost_duration = 1.5
 boost_fade_duration = 0.5
 input_time_span = 0.2
 ghost_amount = 7

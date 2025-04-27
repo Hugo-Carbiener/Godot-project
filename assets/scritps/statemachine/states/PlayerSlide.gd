@@ -19,7 +19,7 @@ func can_enter() -> bool:
 func enter():
 	super()
 	timer = 0
-	player_physics_body.velocity.x = (player_physics_body.velocity.x/abs(player_physics_body.velocity.x)) * slide_initial_velocity
+	player_physics_body.current_speed.x = (player_physics_body.velocity.x/abs(player_physics_body.velocity.x)) * slide_initial_velocity
 	
 func update(_delta: float):
 	if !player_physics_body.is_on_floor() :
