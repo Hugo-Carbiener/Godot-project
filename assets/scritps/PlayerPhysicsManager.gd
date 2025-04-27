@@ -55,7 +55,6 @@ func compute_input_lateral_speed(direction : int, delta : float) :
 func compute_speed_boost(delta : float) : 
 	if !speed_boost_manager.is_speed_boosted() : return
 	
-	speed_boost_manager.boost_remaining_time -= delta
 	var boost_speed : float
 	if speed_boost_manager.boost_remaining_time > speed_boost_manager.boost_fade_duration :
 		boost_speed = speed_boost_manager.additional_speed
