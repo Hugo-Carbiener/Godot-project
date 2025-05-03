@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
+[ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
 [ext_resource type="Texture2D" uid="uid://ftgpjamubujp" path="res://assets/sprites/environment/chapter-1-parallax-back_1.png" id="2_6ovor"]
 [ext_resource type="Script" uid="uid://bvgglaikbvfwb" path="res://assets/scritps/statemachine/StateMachine.gd" id="2_j6nxt"]
 [ext_resource type="Script" uid="uid://c4p85pqsis1gc" path="res://assets/scritps/PlayerPhysicsManager.gd" id="2_mxlrn"]
@@ -14,7 +15,6 @@
 [ext_resource type="Script" uid="uid://k40rcvikau2i" path="res://assets/scritps/statemachine/states/PlayerSlide.gd" id="8_7o1gs"]
 [ext_resource type="Script" uid="uid://cghqdp2hc77sa" path="res://assets/scritps/statemachine/states/PlayerIdle.gd" id="8_ewef8"]
 [ext_resource type="Texture2D" uid="uid://dam1jw1yh0i2l" path="res://assets/sprites/Character_Jump.png" id="9_5hn0m"]
-[ext_resource type="Texture2D" uid="uid://dhpkdbpw5kqa2" path="res://assets/sprites/environment/chapter-1-bg.png" id="9_84wbi"]
 [ext_resource type="Texture2D" uid="uid://bcwnhl8evkmo5" path="res://assets/sprites/Character_Slide.png" id="11_00abt"]
 [ext_resource type="Script" uid="uid://ecir55mvp1jh" path="res://assets/scritps/statemachine/states/PlayerWallGrind.gd" id="12_5ioq0"]
 [ext_resource type="Script" uid="uid://bwovhaam2lqqh" path="res://assets/scritps/statemachine/states/PlayerFall.gd" id="12_fe2yd"]
@@ -1021,8 +1021,8 @@ motion_mirroring = Vector2(640, 0)
 
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 z_index = -100
-position = Vector2(1094, -600)
-texture = ExtResource("9_84wbi")
+position = Vector2(-477, -773)
+texture = ExtResource("1_qvo05")
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1186,7 +1186,7 @@ collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-position = Vector2(2304, -599)
+position = Vector2(-330, -865)
 script = ExtResource("2_mxlrn")
 max_lateral_speed = 300.0
 lateral_acceleration = 750.0
