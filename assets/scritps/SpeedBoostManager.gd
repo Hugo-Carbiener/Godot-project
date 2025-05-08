@@ -2,8 +2,7 @@
 extends Node
 class_name SpeedBoost_manager
 
-@onready var animation_controller = $"../Character body/AnimatedSprite2D"
-@onready var physics_controller = $"../Character body"
+@onready var gm = $"../../Game manager"
 
 const COLOR_SHADER_PARAM_KEY = "shader_parameter/color"
 const ALPHA_SHADER_PARAM_KEY = "shader_parameter/alpha"
@@ -51,14 +50,14 @@ func start_speed_boost() :
 ## Called by a transition state to make the boost input available to the player
 func unlock_speed_boost_input() : 
 	boost_can_be_input = true
-	animation_controller.darken_sprite()
+	gm.player_animation_controller.darken_sprite()
 	var timer = Timer.new()
 	add_child(timer)
 	timer.start(input_time_span)
 	timer.connect("timeout", lock_speed_boost_input)
 	
 func lock_speed_boost_input() :
-	animation_controller.reset_sprite_color()
+	gm.player_animation_controller.reset_sprite_color()
 	boost_can_be_input = false
 	
 func can_be_input() -> bool : 
@@ -76,27 +75,28 @@ func init_ghosts() :
 		var sprite = AnimatedSprite2D.new()
 		sprite.name = "Ghost " + str(ghost_index)
 		sprite.process_mode = Node.PROCESS_MODE_DISABLED
-		sprite.sprite_frames = animation_controller.sprite_frames
+		sprite.sprite_frames = gm.player_animation_controller.sprite_frames
 		sprite.material = ghost_shader.duplicate()
 		sprite.material.set(COLOR_SHADER_PARAM_KEY, ghost_colors[ghost_index])
 		sprite.material.set(ALPHA_SHADER_PARAM_KEY, 1 - ((float(ghost_index) + 1) / (ghost_amount + 1)))
-		sprite.z_index = animation_controller.z_index + physics_controller.z_index - (ghost_index + 1)
+		sprite.z_index = gm.player_animation_controller.z_index + gm.player_physics_body.z_index - (ghost_index + 1)
 		ghosts.append(sprite)
 		add_child(sprite)
 
 func update_ghosts() :
 	for n in range(ghost_amount - 1, 0, -1) : 
 		ghost_positions[n] = ghost_positions[n - 1]
-	ghost_positions[0] = physics_controller.previous_position
+	ghost_positions[0] = gm.player_physics_body.previous_position
 	
 	for ghost_index in ghosts.size() :
 		var current_ghost = ghosts[ghost_index]
 		## position
 		current_ghost.position = ghost_positions[ghost_index]
+		current_ghost.scale = gm.player_animation_controller.scale
 		
 		## animation frame
-		current_ghost.animation = animation_controller.animation
-		var frame_index = animation_controller.frame - (ghost_index + 1)
+		current_ghost.animation = gm.player_animation_controller.animation
+		var frame_index = gm.player_animation_controller.frame - (ghost_index + 1)
 		if frame_index < 0 : frame_index += current_ghost.sprite_frames.get_frame_count(current_ghost.animation)
 		current_ghost.frame = frame_index
 		
