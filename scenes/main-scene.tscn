@@ -1,8 +1,8 @@
-[gd_scene load_steps=122 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=121 format=4 uid="uid://bt8t1ijcp3k8p"]
 
-[ext_resource type="Texture2D" uid="uid://el8b8m177fko" path="res://icon.svg" id="1_21vor"]
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
+[ext_resource type="Script" uid="uid://balwr6gxci6x2" path="res://assets/scritps/GameManager.gd" id="1_ro8so"]
 [ext_resource type="Texture2D" uid="uid://ftgpjamubujp" path="res://assets/sprites/environment/chapter-1-parallax-back_1.png" id="2_6ovor"]
 [ext_resource type="Script" uid="uid://bvgglaikbvfwb" path="res://assets/scritps/statemachine/StateMachine.gd" id="2_j6nxt"]
 [ext_resource type="Script" uid="uid://c4p85pqsis1gc" path="res://assets/scritps/PlayerPhysicsManager.gd" id="2_mxlrn"]
@@ -32,9 +32,6 @@
 [ext_resource type="Shader" uid="uid://d06dngyu7alum" path="res://assets/shaders/solid-white.gdshader" id="26_ja8h8"]
 [ext_resource type="Texture2D" uid="uid://uw7dmahvvnlc" path="res://assets/sprites/chapter-1/plateform-tiles.png" id="26_wbmaj"]
 [ext_resource type="Texture2D" uid="uid://cgvisfvvmaqfw" path="res://assets/sprites/chapter-1/backgroud-tiles.png" id="27_qvo05"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j51n"]
-size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
 size = Vector2(32, 46)
@@ -1076,7 +1073,9 @@ texture = ExtResource("27_qvo05")
 sources/0 = SubResource("TileSetAtlasSource_8kt5s")
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(63, 582)
+
+[node name="Game manager" type="Node" parent="."]
+script = ExtResource("1_ro8so")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = -1
@@ -1114,88 +1113,6 @@ motion_mirroring = Vector2(640, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 texture = ExtResource("3_msjjy")
 centered = false
-
-[node name="Block3" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(433, 602)
-scale = Vector2(0.25, 0.25)
-
-[node name="Sprite2D" type="Sprite2D" parent="Block3"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block3"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_4j51n")
-
-[node name="Block5" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(89, 570)
-scale = Vector2(0.25, 0.25)
-
-[node name="Sprite2D" type="Sprite2D" parent="Block5"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block5"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_4j51n")
-
-[node name="Block2" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(592, 587)
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Block2"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block2"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_4j51n")
-
-[node name="Block4" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(3041, 730)
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Block4"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block4"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_4j51n")
-
-[node name="Floor" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(513, 682)
-scale = Vector2(12, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(-1.41561e-06, 0)
-shape = SubResource("RectangleShape2D_4j51n")
-
-[node name="Floor2" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(2113, 682)
-scale = Vector2(10, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor2"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
-shape = SubResource("RectangleShape2D_4j51n")
-
-[node name="Floor3" type="StaticBody2D" parent="."]
-z_index = 1
-position = Vector2(3713, 682)
-scale = Vector2(10, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor3"]
-texture = ExtResource("1_21vor")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
-shape = SubResource("RectangleShape2D_4j51n")
 
 [node name="Main character" type="Node" parent="."]
 script = ExtResource("2_qsna4")
@@ -1266,7 +1183,7 @@ collider_position = Vector2(2, 9)
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
 z_index = 100
-position = Vector2(-301, -871)
+position = Vector2(-311, -1506)
 script = ExtResource("2_mxlrn")
 max_lateral_speed = 300.0
 lateral_acceleration = 750.0
@@ -1307,20 +1224,6 @@ offset_right = 383.0
 offset_bottom = 265.0
 text = "Vertical velocity : 0"
 script = ExtResource("6_yqf8q")
-
-[node name="Normal jump" type="RichTextLabel" parent="."]
-offset_left = 1337.0
-offset_top = 548.0
-offset_right = 1441.0
-offset_bottom = 580.0
-text = "Normal jump"
-
-[node name="Long jump" type="RichTextLabel" parent="."]
-offset_left = 2865.0
-offset_top = 556.0
-offset_right = 2953.0
-offset_bottom = 580.0
-text = "Long jump"
 
 [node name="Props tilemap" type="TileMapLayer" parent="."]
 z_index = 1

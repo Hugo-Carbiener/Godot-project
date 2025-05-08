@@ -21,9 +21,9 @@ func enter():
 	super()
 	match boost_frame_timing :
 		boost_frame_timings.ON_ANIMATION_START : 
-			animation_controller.connect("animation_changed", on_animation_start)
+			gm.player_animation_controller.connect("animation_changed", on_animation_start)
 		boost_frame_timings.ON_ANIMATION_END : 
-			animation_controller.connect("animation_finished", on_animation_end)
+			gm.player_animation_controller.connect("animation_finished", on_animation_end)
 		boost_frame_timings.ON_CUSTOM_TIMING :
 			var timer = Timer.new()
 			add_child(timer)
@@ -33,9 +33,9 @@ func enter():
 func exit():
 	match boost_frame_timing :
 		boost_frame_timings.ON_ANIMATION_START : 
-			animation_controller.disconnect("animation_changed", on_animation_start)
+			gm.player_animation_controller.disconnect("animation_changed", on_animation_start)
 		boost_frame_timings.ON_ANIMATION_END : 
-			animation_controller.disconnect("animation_finished", on_animation_end)
+			gm.player_animation_controller.disconnect("animation_finished", on_animation_end)
 		boost_frame_timings.ON_CUSTOM_TIMING :
 			pass
 	pass

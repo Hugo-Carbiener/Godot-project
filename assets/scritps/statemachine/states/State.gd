@@ -1,15 +1,9 @@
 extends Node
 class_name State
 
-@onready
-var state_machine = $".."
-@onready
-var animation_controller = $"../../Character body/AnimatedSprite2D"
-@onready
-var player_physics_body = $"../../Character body"
+@onready var gm = $"../../../Game manager"
 
 @export var animation_name : String
-
 @export_group("Collider modifier")
 @export var collider_size : Vector2;
 @export var collider_position : Vector2;
@@ -27,9 +21,9 @@ func can_enter() -> bool:
 	
 func enter(): 
 	if animation_name: 
-		animation_controller.play(animation_name.to_lower())
+		gm.player_animation_controller.play(animation_name.to_lower())
 		
-	var collider = player_physics_body.get_node("Collider")
+	var collider = gm.player_physics_body.get_node("Collider")
 	collider.shape.size = collider_size
 	collider.position = collider_position
 	
@@ -43,10 +37,10 @@ func physics_update(_delta: float):
 	pass
 	
 func update_lateral_speed(direction : int, delta : float) :
-	player_physics_body.lateral_movement_input = true
+	gm.player_physics_body.lateral_movement_input = true
 	if !allow_lateral_movement() : return
 	
-	player_physics_body.compute_input_lateral_speed(direction, delta)
+	gm.player_physics_body.compute_input_lateral_speed(direction, delta)
 
 func modify_animation(animationControler : AnimatedSprite2D) : return
 func allow_lateral_movement() -> bool: return true;
