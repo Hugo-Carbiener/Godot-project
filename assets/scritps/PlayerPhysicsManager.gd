@@ -9,6 +9,8 @@ var lateral_movement_input : bool = false ## Whether there was a lateral directi
 @export_group("Drag")
 @export var lateral_ground_drag_acceleration : float ## Acceleration from the force opposed to movement when on the ground
 @export var lateral_air_drag_acceleration : float ## Acceleration from the force opposed to movement when airborne
+@export_group("Snap")
+@export var snap_length : float
 
 var was_on_floor : bool = false
 var current_speed : Vector2 ## The speed at this frame
@@ -28,7 +30,11 @@ func _physics_process(delta: float) -> void:
 	
 	compute_speed_boost(delta)
 	compute_drag(delta)
-	move_and_slide()
+	if gm.state_machine.current_state.physics_snap_on_slopes() :
+		move_and_slide()
+	else :
+		move_and_slide()
+	
 	velocity.x = current_speed.x
 	lateral_movement_input = false
 
@@ -72,3 +78,12 @@ func compute_drag(delta : float) :
 
 func moved_last_frame() -> bool :
 	return previous_position != position
+
+func enable_snap() :
+	floor_snap_length = snap_length
+
+func disable_snap() : 
+	floor_snap_length = 0
+
+func is_on_slope() -> bool : 
+	return get_floor_angle() > 0 && get_floor_angle() < 1
