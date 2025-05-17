@@ -1144,6 +1144,7 @@ sources/0 = SubResource("TileSetAtlasSource_8kt5s")
 script = ExtResource("1_ro8so")
 
 [node name="Parallax manager" type="Node2D" parent="."]
+visible = false
 script = ExtResource("2_op0ni")
 parallax_layer_data = Array[ExtResource("3_k52ex")]([SubResource("Resource_m0kw3"), SubResource("Resource_dixok"), SubResource("Resource_b4aq2"), SubResource("Resource_k52ex")])
 
@@ -1216,7 +1217,7 @@ collider_position = Vector2(5, -2.5)
 script = ExtResource("8_7o1gs")
 slide_min_duration = 0.8
 slide_max_duration = 1.2
-slide_initial_velocity = 600.0
+slide_initial_velocity = 500.0
 animation_name = "slide"
 collider_size = Vector2(54, 28)
 collider_position = Vector2(3, 18)

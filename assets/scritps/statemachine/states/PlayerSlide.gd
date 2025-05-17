@@ -36,11 +36,14 @@ func update(_delta: float):
 		gm.state_machine.transition_to("fall")
 		return
 
-	if (timer >= slide_max_duration) :
+	if gm.player_physics_body.is_on_wall() :
+		gm.state_machine.transition_to("idle")
+
+	if timer >= slide_max_duration :
 		gm.state_machine.transition_to("idle")
 		return
 		
-	if (timer >= slide_min_duration && gm.player_physics_body.lateral_movement_input) :
+	if timer >= slide_min_duration && gm.player_physics_body.lateral_movement_input :
 		gm.state_machine.transition_to("idle")
 		return
 		
