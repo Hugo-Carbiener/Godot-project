@@ -15,8 +15,7 @@ func getPhysicsDebugText():
 	debug_text += "PHYSICS\n"
 	debug_text += "position: " + str(gm.player_physics_body.position) + "\n"
 	debug_text += "velocity: " + str(gm.player_physics_body.velocity) + "\n"
-	debug_text += "Is on floor: " + str(gm.player_physics_body.is_on_floor()) + "\n"
-	debug_text += "Is against wall: " + str(gm.player_physics_body.is_on_wall()) + "\n"
+	debug_text += "Is on floor/wall/wall only: " + str(gm.player_physics_body.is_on_floor()) + ", " + str(gm.player_physics_body.is_on_wall()) + ", " +  str(gm.player_physics_body.is_on_wall_only())
 	
 	debug_text += "\nSLOPE\n"
 	debug_text += "Floor angle: " + str(gm.player_physics_body.get_floor_angle()) + "\n"

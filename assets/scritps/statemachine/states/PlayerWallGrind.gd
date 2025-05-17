@@ -11,8 +11,11 @@ func get_gravity() -> float :
 func physics_update(delta: float) :
 	super(delta)
 	
-	if !gm.player_physics_body.is_on_wall_only() || !gm.player_physics_body.lateral_movement_input: 
+	if !gm.player_physics_body.lateral_movement_input :
 		gm.state_machine.transition_to("fall")
+	
+	if !gm.player_physics_body.is_on_wall_only() : 
+		gm.state_machine.transition_to("idle")
 
 func sprite_is_reversed() -> bool:
 	return true;
