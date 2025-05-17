@@ -47,4 +47,3 @@ func allow_lateral_movement() -> bool: return true
 func allow_input() -> bool : return true
 func sprite_is_reversed() -> bool:	return false
 func prevent_drag() -> bool: return false
-func physics_snap_on_slopes() -> bool: return false

@@ -15,6 +15,10 @@ func exit() :
 	gm.player_animation_controller.speed_scale = 1
 	
 func physics_update(_delta: float):
+	if gm.player_physics_body.is_on_slope() :
+		gm.state_machine.transition_to("slide")
+		return
+
 	if !gm.player_physics_body.is_on_floor():
 		gm.state_machine.transition_to("fall")
 		return

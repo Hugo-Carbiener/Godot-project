@@ -30,10 +30,12 @@ func _physics_process(delta: float) -> void:
 	
 	compute_speed_boost(delta)
 	compute_drag(delta)
-	if gm.state_machine.current_state.physics_snap_on_slopes() :
-		move_and_slide()
-	else :
-		move_and_slide()
+	move_and_slide()
+	
+	if is_on_slope() :
+		enable_snap()
+	else : 
+		disable_snap()
 	
 	velocity.x = current_speed.x
 	lateral_movement_input = false

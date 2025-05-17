@@ -26,7 +26,7 @@ func getPhysicsDebugText():
 	debug_text += "\nLateral input: " + str(gm.player_physics_body.lateral_movement_input) + "\n"
 
 	return debug_text
-	
+
 func getStateDebugText():
 	var debug_text = "State: " + gm.state_machine.current_state.name.to_lower() + "\n"
 	return debug_text

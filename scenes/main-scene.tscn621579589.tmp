@@ -1261,7 +1261,7 @@ max_lateral_speed = 300.0
 lateral_acceleration = 750.0
 lateral_ground_drag_acceleration = 650.0
 lateral_air_drag_acceleration = 75.0
-snap_length = 32.0
+snap_length = 16.0
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
 position = Vector2(2, 9)
@@ -1294,10 +1294,8 @@ ghost_colors = Array[Color]([Color(0.180392, 0.0392157, 0.188235, 1), Color(0.30
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug text" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 3.0
+offset_right = 643.0
+offset_bottom = 360.0
 text = "Vertical velocity : 0"
 script = ExtResource("6_yqf8q")
 
