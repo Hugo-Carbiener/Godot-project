@@ -10,6 +10,8 @@ class_name PlayerJump
 @export var variable_jump_min_velocity_multiplier : float
 @export_group("Coyote time")
 @export var coyote_time_duration : float
+@export_group("Corner correction")
+@export var check_area_width : int
 
 @onready var jump_velocity : float = (2.0 * jump_height) / jump_ascension_duration * -1
 @onready var jump_gravity : float = (-2.0 * jump_height) / pow(jump_ascension_duration, 2) * -1
@@ -31,6 +33,7 @@ func enter():
 	gm.player_physics_body.velocity.y = jump_velocity
 	
 func physics_update(delta: float):
+	gm.player_physics_body.correct_corners(check_area_width, delta)
 	# jump gravity
 	gm.player_physics_body.velocity.y  += get_gravity() * delta
 

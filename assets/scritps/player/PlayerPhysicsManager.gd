@@ -78,6 +78,22 @@ func compute_drag(delta : float) :
 	var drag_value = min(abs(velocity.x), drag_acceleration_value * delta)
 	current_speed.x -= (velocity.x / abs(velocity.x)) * drag_value
 
+# Simulate movement to verify if a collision with a ceilling will occur and if so, simulate lateral movement to find the nearest corner
+func correct_corners(check_area_width : int, delta : float) : 
+	if gm.state_machine.current_state is not PlayerJump : return
+
+	# if we hit a ceilling 
+	if test_move(global_transform, Vector2(0, velocity.y) * delta) :
+		for pixel_offset in range (1, check_area_width + 1) :
+			for direction in [-1 , 1] :
+				var collided = test_move(global_transform.translated(Vector2(pixel_offset * direction, 0)), Vector2(0, velocity.y * delta))
+				if collided : continue;
+				
+				global_position.x = round(global_position.x)
+				translate(Vector2(pixel_offset * direction, 0))
+				return
+		
+
 func moved_last_frame() -> bool :
 	return previous_position != position
 
