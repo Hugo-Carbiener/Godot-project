@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=129 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
@@ -34,6 +34,7 @@
 [ext_resource type="Shader" uid="uid://d06dngyu7alum" path="res://assets/shaders/solid-white.gdshader" id="26_ja8h8"]
 [ext_resource type="Texture2D" uid="uid://uw7dmahvvnlc" path="res://assets/sprites/chapter-1/plateform-tiles.png" id="26_wbmaj"]
 [ext_resource type="Texture2D" uid="uid://cgvisfvvmaqfw" path="res://assets/sprites/chapter-1/backgroud-tiles.png" id="27_qvo05"]
+[ext_resource type="Script" uid="uid://b567ghhnjpnaq" path="res://assets/scritps/player/CornerInteraction.gd" id="28_m0kw3"]
 
 [sub_resource type="Resource" id="Resource_m0kw3"]
 script = ExtResource("3_k52ex")
@@ -66,6 +67,9 @@ movement_coefficient = Vector2(0.4, 0)
 offset = Vector2(0, 300)
 sorting_order = 51
 metadata/_custom_type_script = "uid://barfqdc4cpfuf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k52ex"]
+size = Vector2(32, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
 size = Vector2(32, 46)
@@ -621,9 +625,6 @@ animations = [{
 "name": &"wall_grind",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k52ex"]
-size = Vector2(32, 8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ja8h8"]
 shader = ExtResource("26_ja8h8")
@@ -1267,6 +1268,16 @@ lateral_ground_drag_acceleration = 650.0
 lateral_air_drag_acceleration = 75.0
 snap_length = 32.0
 
+[node name="Corner correction area" type="Area2D" parent="Main character/Character body"]
+position = Vector2(43, 11)
+script = ExtResource("28_m0kw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main character/Character body/Corner correction area"]
+z_index = -1
+position = Vector2(-41, -29)
+shape = SubResource("RectangleShape2D_k52ex")
+debug_color = Color(0, 0.576471, 0.815686, 1)
+
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
 position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_juoog")
@@ -1284,14 +1295,6 @@ position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
 animation = &"wall_grind"
 script = ExtResource("16_swycs")
-
-[node name="Area2D" type="Area2D" parent="Main character/Character body"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main character/Character body/Area2D"]
-z_index = -1
-position = Vector2(2, -18)
-shape = SubResource("RectangleShape2D_k52ex")
-debug_color = Color(0, 0.576471, 0.815686, 1)
 
 [node name="Speed boost manager" type="Node" parent="Main character"]
 script = ExtResource("25_8kt5s")
