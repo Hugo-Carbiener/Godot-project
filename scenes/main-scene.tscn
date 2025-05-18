@@ -62,8 +62,8 @@ metadata/_custom_type_script = "uid://barfqdc4cpfuf"
 [sub_resource type="Resource" id="Resource_k52ex"]
 script = ExtResource("3_k52ex")
 sprite = ExtResource("4_onaww")
-movement_coefficient = Vector2(-0.4, 0)
-offset = Vector2(0, 250)
+movement_coefficient = Vector2(-0.4, 0.2)
+offset = Vector2(0, 275)
 sorting_order = 51
 metadata/_custom_type_script = "uid://barfqdc4cpfuf"
 

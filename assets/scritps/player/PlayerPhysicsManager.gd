@@ -30,7 +30,6 @@ func _physics_process(delta: float) -> void:
 	
 	compute_speed_boost(delta)
 	compute_drag(delta)
-	move_and_slide()
 	compute_velocity_collisions()
 	
 	if is_on_slope() :
@@ -40,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = current_speed.x
 	lateral_movement_input = false
+	move_and_slide()
 
 func check_coyote_time() :
 	if (was_on_floor == true 

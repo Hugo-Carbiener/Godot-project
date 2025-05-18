@@ -37,3 +37,6 @@ func modify_animation(animationControler : AnimatedSprite2D) :
 			animationControler.play("slow")
 		elif (animationControler.animation.get_basename() != "run") :
 			animationControler.play("run")
+
+func sprite_is_reversed() -> bool:
+	return gm.player_animation_controller.name == "slow"
