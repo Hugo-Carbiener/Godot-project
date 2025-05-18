@@ -230,37 +230,37 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("19_8kt5s")
 region = Rect2(448, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4m177"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtrk1"]
+atlas = ExtResource("15_r4vnx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7ayy"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_18y30"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vjy5"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j133h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_36vni"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ri02n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbeo4"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dy4kn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhyu1"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_txcbp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cftx"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pply4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5m08"]
 atlas = ExtResource("15_r4vnx")
 region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xd58i"]
-atlas = ExtResource("15_r4vnx")
-region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7ie4"]
 atlas = ExtResource("11_00abt")
@@ -507,28 +507,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4m177")
+"texture": SubResource("AtlasTexture_rtrk1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_18y30")
+"texture": SubResource("AtlasTexture_t7ayy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j133h")
+"texture": SubResource("AtlasTexture_1vjy5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ri02n")
+"texture": SubResource("AtlasTexture_36vni")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dy4kn")
+"texture": SubResource("AtlasTexture_vbeo4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_txcbp")
+"texture": SubResource("AtlasTexture_qhyu1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pply4")
+"texture": SubResource("AtlasTexture_1cftx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xd58i")
+"texture": SubResource("AtlasTexture_a5m08")
 }],
 "loop": true,
 "name": &"run",
@@ -1280,7 +1280,7 @@ editor_draw_screen = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"wall_grind"
+animation = &"run"
 script = ExtResource("16_swycs")
 
 [node name="Speed boost manager" type="Node" parent="Main character"]

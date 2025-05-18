@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	compute_speed_boost(delta)
 	compute_drag(delta)
 	move_and_slide()
+	compute_velocity_collisions()
 	
 	if is_on_slope() :
 		enable_snap()
@@ -78,6 +79,18 @@ func compute_drag(delta : float) :
 	var drag_value = min(abs(velocity.x), drag_acceleration_value * delta)
 	current_speed.x -= (velocity.x / abs(velocity.x)) * drag_value
 
+# Nullify vertical and lateral velocities in case of a collision 
+# To use after corner correction, because it avoids collision
+func compute_velocity_collisions() :
+	if is_on_ceiling() and current_speed.y > 0 :
+		current_speed.y = 0
+	
+	if is_on_wall() :
+		var wall_normal = get_wall_normal() 
+		if ((wall_normal == Vector2.RIGHT and current_speed.x < 0)
+		or (wall_normal == Vector2.LEFT and current_speed.x > 0)) : 
+			current_speed.x = 0
+
 # Simulate movement to verify if a collision with a ceilling will occur and if so, simulate lateral movement to find the nearest corner
 func correct_corners(check_area_width : int, delta : float) : 
 	if gm.state_machine.current_state is not PlayerJump : return
@@ -92,7 +105,6 @@ func correct_corners(check_area_width : int, delta : float) :
 				global_position.x = round(global_position.x)
 				translate(Vector2(pixel_offset * direction, 0))
 				return
-		
 
 func moved_last_frame() -> bool :
 	return previous_position != position
