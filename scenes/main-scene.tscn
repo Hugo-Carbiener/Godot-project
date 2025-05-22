@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=136 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://c0gfyotkdi532" path="res://assets/sprites/environment/chapter-1-props-tile-atlas.png" id="17_3aygs"]
 [ext_resource type="Texture2D" uid="uid://bhad5roqj6kl1" path="res://assets/sprites/environment/chapter-1-building-tile-atlas.png" id="18_ulxi5"]
 [ext_resource type="Texture2D" uid="uid://b5xkrp584rx8" path="res://assets/sprites/Character_Roll.png" id="19_8kt5s"]
+[ext_resource type="Texture2D" uid="uid://3ws7kwbkfmjk" path="res://assets/sprites/Character_Wall-hang.png" id="19_m0kw3"]
 [ext_resource type="Texture2D" uid="uid://e1a5ah7sbhsr" path="res://assets/sprites/Character_Slow.png" id="19_wtg5e"]
 [ext_resource type="Texture2D" uid="uid://dy5euwas4rr58" path="res://assets/sprites/Character_Wall-grind.png" id="20_2ojer"]
 [ext_resource type="Script" uid="uid://x8o8yoipg014" path="res://assets/scritps/player/SpeedBoostManager.gd" id="25_8kt5s"]
@@ -100,6 +101,38 @@ region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3na6c"]
 atlas = ExtResource("13_cefen")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtrk1"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7ayy"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vjy5"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36vni"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbeo4"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhyu1"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cftx"]
+atlas = ExtResource("19_m0kw3")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5m08"]
+atlas = ExtResource("19_m0kw3")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n7oqg"]
@@ -387,6 +420,35 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtrk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7ayy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vjy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36vni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbeo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhyu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cftx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5m08")
+}],
+"loop": true,
+"name": &"grab",
 "speed": 10.0
 }, {
 "frames": [{
@@ -1149,6 +1211,7 @@ parallax_layer_data = Array[ExtResource("3_k52ex")]([SubResource("Resource_m0kw3
 
 [node name="Main character" type="Node" parent="."]
 script = ExtResource("2_qsna4")
+bufferLifeSpan = null
 
 [node name="StateMachine" type="Node" parent="Main character" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_j6nxt")
@@ -1224,10 +1287,9 @@ max_lateral_speed = 300.0
 lateral_acceleration = 750.0
 lateral_ground_drag_acceleration = 650.0
 lateral_air_drag_acceleration = 75.0
-snap_length = 32.0
+snap_length = 16.0
 
 [node name="Collider" type="CollisionShape2D" parent="Main character/Character body"]
-visible = false
 position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_juoog")
 debug_color = Color(0.853844, 0.350853, 0.315144, 0.960784)
@@ -1242,8 +1304,10 @@ editor_draw_screen = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"run"
+animation = &"grab"
 script = ExtResource("16_swycs")
+
+[node name="Grab handles" type="Node" parent="Main character/Character body"]
 
 [node name="Speed boost manager" type="Node" parent="Main character"]
 script = ExtResource("25_8kt5s")

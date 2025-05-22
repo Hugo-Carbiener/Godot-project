@@ -7,6 +7,7 @@ static var JUMP_ACTION_KEY = "jump"
 static var SLIDE_ACTION_KEY = "slide"
 static var RELOAD_ACTION_KEY = "reload"
 static var SPEED_BOOST_ACTION_KEY = "speed-boost"
+static var GRAB_ACTION_KEY = "grab"
 
 var bufferedInputs = [JUMP_ACTION_KEY]
 @export
@@ -37,3 +38,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed(SPEED_BOOST_ACTION_KEY) :
 		if gm.speed_boost_manager.can_be_input() : 
 			gm.speed_boost_manager.start_speed_boost()
+			
+	if Input.is_action_pressed(GRAB_ACTION_KEY) : 
+		
+		
