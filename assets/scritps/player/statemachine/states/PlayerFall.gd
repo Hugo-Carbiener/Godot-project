@@ -32,3 +32,5 @@ func physics_update(delta: float):
 	if gm.player_physics_body.is_on_floor() :
 		gm.state_machine.transition_to("idle")
 		return
+
+func allow_grab_input() -> bool : return true

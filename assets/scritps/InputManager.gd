@@ -9,10 +9,10 @@ static var RELOAD_ACTION_KEY = "reload"
 static var SPEED_BOOST_ACTION_KEY = "speed-boost"
 static var GRAB_ACTION_KEY = "grab"
 
-var bufferedInputs = [JUMP_ACTION_KEY]
-@export
-var bufferLifeSpan : float
+var grab_action_is_pressed : bool
 
+func _ready() -> void:
+	grab_action_is_pressed = false
 
 func _process(delta: float) -> void:
 	if !gm.state_machine.current_state.allow_input(): return
@@ -35,10 +35,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(RELOAD_ACTION_KEY):
 		get_tree().reload_current_scene()
 		
-	if Input.is_action_pressed(SPEED_BOOST_ACTION_KEY) :
+	if Input.is_action_just_pressed(SPEED_BOOST_ACTION_KEY) :
 		if gm.speed_boost_manager.can_be_input() : 
 			gm.speed_boost_manager.start_speed_boost()
 			
-	if Input.is_action_pressed(GRAB_ACTION_KEY) : 
-		
-		
+	grab_action_is_pressed = gm.state_machine.current_state.allow_grab_input() && Input.is_action_pressed(GRAB_ACTION_KEY)

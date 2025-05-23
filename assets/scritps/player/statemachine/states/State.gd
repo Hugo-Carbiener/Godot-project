@@ -43,7 +43,8 @@ func update_lateral_speed(direction : int, delta : float) :
 	gm.player_physics_body.compute_input_lateral_speed(direction, delta)
 
 func modify_animation(animationControler : AnimatedSprite2D) : return
-func allow_lateral_movement() -> bool: return true
 func allow_input() -> bool : return true
+func allow_lateral_movement() -> bool: return true
+func allow_grab_input() -> bool : return false
 func sprite_is_reversed() -> bool:	return false
 func prevent_drag() -> bool: return false

@@ -55,3 +55,5 @@ func on_jump_early_release():
 
 func is_coyote_time_valid(coyote_time_start_timestamp: float) -> bool:
 	return Time.get_unix_time_from_system() - coyote_time_start_timestamp <= coyote_time_duration
+
+func allow_grab_input() -> bool : return true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=138 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
@@ -35,6 +35,7 @@
 [ext_resource type="Shader" uid="uid://d06dngyu7alum" path="res://assets/shaders/solid-white.gdshader" id="26_ja8h8"]
 [ext_resource type="Texture2D" uid="uid://uw7dmahvvnlc" path="res://assets/sprites/chapter-1/plateform-tiles.png" id="26_wbmaj"]
 [ext_resource type="Texture2D" uid="uid://cgvisfvvmaqfw" path="res://assets/sprites/chapter-1/backgroud-tiles.png" id="27_qvo05"]
+[ext_resource type="Script" uid="uid://tc0y2x38u5me" path="res://assets/scritps/player/GrabManager.gd" id="31_dixok"]
 
 [sub_resource type="Resource" id="Resource_m0kw3"]
 script = ExtResource("3_k52ex")
@@ -70,6 +71,9 @@ metadata/_custom_type_script = "uid://barfqdc4cpfuf"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
 size = Vector2(32, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0kw3"]
+size = Vector2(4, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mo3nr"]
 atlas = ExtResource("13_cefen")
@@ -1156,7 +1160,8 @@ texture = ExtResource("26_wbmaj")
 0:4/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSet" id="TileSet_qvo05"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Plateforms"
 terrain_set_0/terrain_0/color = Color(0.00034683, 0.296483, 0.914852, 1)
@@ -1202,22 +1207,21 @@ sources/0 = SubResource("TileSetAtlasSource_8kt5s")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Game manager" type="Node" parent="."]
+[node name="Game manager" type="Node2D" parent="."]
 script = ExtResource("1_ro8so")
 
 [node name="Parallax manager" type="Node2D" parent="."]
 script = ExtResource("2_op0ni")
 parallax_layer_data = Array[ExtResource("3_k52ex")]([SubResource("Resource_m0kw3"), SubResource("Resource_dixok"), SubResource("Resource_b4aq2"), SubResource("Resource_k52ex")])
 
-[node name="Main character" type="Node" parent="."]
+[node name="Main character" type="Node2D" parent="."]
 script = ExtResource("2_qsna4")
-bufferLifeSpan = null
 
-[node name="StateMachine" type="Node" parent="Main character" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node2D" parent="Main character" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_j6nxt")
-initial_state = NodePath("Fall")
+initial_state = NodePath("Idle")
 
-[node name="Run" type="Node" parent="Main character/StateMachine"]
+[node name="Run" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("6_tamy0")
 move_speed = 300
 move_direction = 1
@@ -1225,7 +1229,7 @@ animation_name = "run"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
-[node name="Jump" type="Node" parent="Main character/StateMachine"]
+[node name="Jump" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("7_540ha")
 jump_height = 150.0
 jump_ascension_duration = 0.55
@@ -1237,7 +1241,7 @@ animation_name = "jump"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
-[node name="Slide" type="Node" parent="Main character/StateMachine"]
+[node name="Slide" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("8_7o1gs")
 slide_min_duration = 0.8
 slide_max_duration = 1.2
@@ -1246,7 +1250,7 @@ animation_name = "slide"
 collider_size = Vector2(54, 28)
 collider_position = Vector2(3, 18)
 
-[node name="Fall" type="Node" parent="Main character/StateMachine"]
+[node name="Fall" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("12_fe2yd")
 fall_duration = 0.3
 max_fall_velocity = 800.0
@@ -1255,13 +1259,13 @@ animation_name = "fall"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
-[node name="Idle" type="Node" parent="Main character/StateMachine"]
+[node name="Idle" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("8_ewef8")
 animation_name = "idle"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
-[node name="Wall grind" type="Node" parent="Main character/StateMachine"]
+[node name="Wall grind" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("12_5ioq0")
 gravity_coefficient = 0.2
 fall_duration = 0.3
@@ -1270,7 +1274,7 @@ animation_name = "wall_grind"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
-[node name="Roll" type="Node" parent="Main character/StateMachine"]
+[node name="Roll" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("13_qvo05")
 has_boost_frame = true
 boost_frame_timing = 1
@@ -1294,6 +1298,18 @@ position = Vector2(2, 9)
 shape = SubResource("RectangleShape2D_juoog")
 debug_color = Color(0.853844, 0.350853, 0.315144, 0.960784)
 
+[node name="Left grab handle" type="CollisionShape2D" parent="Main character/Character body"]
+position = Vector2(-16, -12)
+shape = SubResource("RectangleShape2D_m0kw3")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="Right grab handle" type="CollisionShape2D" parent="Main character/Character body"]
+position = Vector2(20, -12)
+shape = SubResource("RectangleShape2D_m0kw3")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 1)
+
 [node name="Camera2D" type="Camera2D" parent="Main character/Character body"]
 position = Vector2(0, -40)
 zoom = Vector2(4, 4)
@@ -1307,9 +1323,7 @@ sprite_frames = SubResource("SpriteFrames_p5m8t")
 animation = &"grab"
 script = ExtResource("16_swycs")
 
-[node name="Grab handles" type="Node" parent="Main character/Character body"]
-
-[node name="Speed boost manager" type="Node" parent="Main character"]
+[node name="Speed boost manager" type="Node2D" parent="Main character"]
 script = ExtResource("25_8kt5s")
 additional_speed = 200.0
 boost_duration = 1.5
@@ -1318,6 +1332,11 @@ input_time_span = 0.2
 ghost_amount = 7
 ghost_shader = SubResource("ShaderMaterial_ja8h8")
 ghost_colors = Array[Color]([Color(0.180392, 0.0392157, 0.188235, 1), Color(0.309804, 0.0784314, 0.27451, 1), Color(0.435294, 0.113725, 0.360784, 1), Color(0.431373, 0.317647, 0.505882, 1), Color(0.427451, 0.521569, 0.647059, 1), Color(0.423529, 0.72549, 0.788235, 1), Color(0.423529, 0.929412, 0.929412, 1)])
+
+[node name="Grab manager" type="Node2D" parent="Main character" node_paths=PackedStringArray("left_collider", "right_collider")]
+script = ExtResource("31_dixok")
+left_collider = NodePath("../Character body/Left grab handle")
+right_collider = NodePath("../Character body/Right grab handle")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1343,7 +1362,7 @@ tile_map_data = PackedByteArray("AADw/z4AAAALAAcAAADw/z8AAAALAAcAAADx/z4AAAALAAc
 tile_set = SubResource("TileSet_agar6")
 use_kinematic_bodies = true
 
-[node name="Tilemaps" type="Node" parent="."]
+[node name="Tilemaps" type="Node2D" parent="."]
 
 [node name="Plateforms" type="TileMapLayer" parent="Tilemaps"]
 z_index = 14
