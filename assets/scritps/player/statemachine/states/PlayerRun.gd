@@ -39,4 +39,4 @@ func modify_animation(animationControler : AnimatedSprite2D) :
 			animationControler.play("run")
 
 func sprite_is_reversed() -> bool:
-	return gm.player_animation_controller.name == "slow"
+	return gm.player_animation_controller.animation == "slow"
