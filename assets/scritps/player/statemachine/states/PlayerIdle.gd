@@ -7,7 +7,7 @@ func can_enter() -> bool:
 func enter():
 	super()
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if !gm.player_physics_body.is_on_floor():
 		gm.state_machine.transition_to("fall")
 		return

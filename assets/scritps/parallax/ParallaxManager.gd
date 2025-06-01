@@ -17,7 +17,7 @@ func _ready() -> void:
 	for layer_index in range(parallax_layer_data.size() * parallax_layer_sprite_amount) :
 		setup_layer(layer_index)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	camera_previous_position = camera_current_position
 	camera_current_position = gm.camera.global_position
 	var camera_movement = camera_current_position - camera_previous_position
@@ -48,21 +48,21 @@ func update_layers_with_cam_movement(camera_movement : Vector2) :
 		var layer_data = parallax_layer_data[layer_data_index]
 		sprite.position += camera_movement * layer_data.movement_coefficient
 	
-func update_layer_sprites_copy_offset(camera_current_position : Vector2) :
+func update_layer_sprites_copy_offset(camera_position : Vector2) :
 	for layer_data_index in range(parallax_layer_data.size()): 
 		var middle_sprite_index = layer_data_index * parallax_layer_sprite_amount + floor(parallax_layer_sprite_amount / 2)
 		var middle_sprite = layers[middle_sprite_index]
-		if is_camera_on_copy_sprite(camera_current_position, middle_sprite, LEFT) :
+		if is_camera_on_copy_sprite(camera_position, middle_sprite, LEFT) :
 			shift_sprites(middle_sprite_index, LEFT)
 			return
-		if is_camera_on_copy_sprite(camera_current_position, middle_sprite, RIGHT) :
+		if is_camera_on_copy_sprite(camera_position, middle_sprite, RIGHT) :
 			shift_sprites(middle_sprite_index, RIGHT)
 			return
 
-func is_camera_on_copy_sprite(camera_current_position : Vector2, middle_sprite : Sprite2D, direction : int) -> bool :
+func is_camera_on_copy_sprite(camera_position : Vector2, middle_sprite : Sprite2D, direction : int) -> bool :
 	var sprite_width = middle_sprite.texture.get_width()
-	return direction == RIGHT && camera_current_position.x > middle_sprite.position.x + (sprite_width * direction / 2) \
-		|| direction == LEFT && camera_current_position.x < middle_sprite.position.x + (sprite_width * direction / 2)
+	return direction == RIGHT && camera_position.x > middle_sprite.position.x + (sprite_width * direction / 2) \
+		|| direction == LEFT && camera_position.x < middle_sprite.position.x + (sprite_width * direction / 2)
 
 func shift_sprites(middle_sprite_index : int, direction : int) :
 	var middle_sprite = layers[middle_sprite_index]

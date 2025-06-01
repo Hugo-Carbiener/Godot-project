@@ -8,6 +8,6 @@ class_name GrabManager
 var left_collider_enabled : bool
 var right_collider_enabled : bool
 
-func _process(delta: float) -> void:
-    left_collider.disabled = !gm.input_manager.grab_action_is_pressed
-    right_collider.disabled = !gm.input_manager.grab_action_is_pressed
+func _process(_delta: float) -> void:
+	left_collider.disabled = !gm.input_manager.grab_action_is_pressed
+	right_collider.disabled = !gm.input_manager.grab_action_is_pressed

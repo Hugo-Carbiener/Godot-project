@@ -3,7 +3,7 @@ class_name DebugTextManager
 
 @onready var gm = $"../../Game manager"
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	text = ""
 	text += getPhysicsDebugText()
 	text += "\n"

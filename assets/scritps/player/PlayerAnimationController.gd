@@ -3,7 +3,7 @@ class_name PlayerAnimationController
 
 @onready var gm = $"../../../Game manager"
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	check_player_orientation()
 	gm.state_machine.current_state.modify_animation(self)
 	
@@ -19,3 +19,6 @@ func darken_sprite() :
 
 func reset_sprite_color() : 
 	modulate = Color(1, 1, 1, 1)
+
+func get_current_player_texture() -> Texture :
+	return sprite_frames.get_frame_texture(animation, frame)

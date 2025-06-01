@@ -16,17 +16,21 @@ var was_on_floor : bool = false
 var current_speed : Vector2 ## The speed at this frame
 var previous_speed : Vector2 ## The speed at the previous frame
 var previous_position : Vector2 ## The position at the previous frame 
+var previous_safe_position : Vector2 ## The last position at which the player can respawn
 var current_direction : int
 var previous_direction : int ## The direction at the previous frame (> 0 = facing right) 
 var coyote_time_start : float = 0
 
 func _physics_process(delta: float) -> void:
+	if gm.game_paused : return
 	check_coyote_time()
 	
 	was_on_floor = is_on_floor()
 	previous_speed = velocity
 	previous_position = position
 	previous_direction = current_direction
+	if is_on_floor() && previous_safe_position == Vector2.ZERO :
+		previous_safe_position = position
 	
 	compute_speed_boost(delta)
 	compute_drag(delta)
@@ -39,6 +43,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = current_speed.x
 	lateral_movement_input = false
+	
 	move_and_slide()
 
 func check_coyote_time() :
@@ -60,7 +65,7 @@ func compute_input_lateral_speed(direction : int, delta : float) :
 	if abs(current_speed.x) > max_lateral_speed :
 		current_speed.x = max_lateral_speed * direction
 
-func compute_speed_boost(delta : float) : 
+func compute_speed_boost(_delta : float) : 
 	if !gm.speed_boost_manager.is_speed_boosted() : return
 	
 	var boost_speed : float
@@ -117,3 +122,9 @@ func disable_snap() :
 
 func is_on_slope() -> bool : 
 	return get_floor_angle() > 0 && get_floor_angle() < 1
+
+func respawn() : 
+	position = previous_safe_position
+	previous_position = previous_safe_position
+	current_speed = Vector2.ZERO
+	previous_speed = Vector2.ZERO
