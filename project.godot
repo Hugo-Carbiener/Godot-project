@@ -68,6 +68,9 @@ grab={
 
 [layer_names]
 
+2d_render/layer_1="Player"
+2d_render/layer_2="Environment"
+2d_render/layer_3="Debug"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Grab handles"
 

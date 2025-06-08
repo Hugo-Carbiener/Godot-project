@@ -17,7 +17,7 @@ var current_speed : Vector2 ## The speed at this frame
 var previous_speed : Vector2 ## The speed at the previous frame
 var previous_position : Vector2 ## The position at the previous frame 
 var previous_safe_position : Vector2 ## The last position at which the player can respawn
-var current_direction : int
+var current_direction : int = 1
 var previous_direction : int ## The direction at the previous frame (> 0 = facing right) 
 var coyote_time_start : float = 0
 

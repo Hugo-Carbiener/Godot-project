@@ -27,7 +27,7 @@ func enter():
 	collider.shape.size = collider_size
 	collider.position = collider_position
 	
-func exit():
+func exit() :
 	pass
 	
 func update(_delta: float):
@@ -42,7 +42,7 @@ func update_lateral_speed(direction : int, delta : float) :
 	
 	gm.player_physics_body.compute_input_lateral_speed(direction, delta)
 
-func modify_animation(_animationControler : AnimatedSprite2D) : return
+func modify_animation(_animation_controler : AnimatedSprite2D) : return
 func allow_input() -> bool : return true
 func allow_lateral_movement() -> bool: return true
 func allow_grab_input() -> bool : return false
