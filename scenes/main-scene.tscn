@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=170 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
@@ -17,7 +17,10 @@
 [ext_resource type="Script" uid="uid://k40rcvikau2i" path="res://assets/scritps/player/statemachine/states/PlayerSlide.gd" id="8_7o1gs"]
 [ext_resource type="Script" uid="uid://dwqmsradd0k0y" path="res://assets/scritps/player/PlayerManager.gd" id="8_coyvs"]
 [ext_resource type="Script" uid="uid://cghqdp2hc77sa" path="res://assets/scritps/player/statemachine/states/PlayerIdle.gd" id="8_ewef8"]
+[ext_resource type="Script" uid="uid://bsawwxfoorrhe" path="res://assets/scritps/VFX/VFXManager.gd" id="8_fs6b5"]
 [ext_resource type="Texture2D" uid="uid://dam1jw1yh0i2l" path="res://assets/sprites/Character_Jump.png" id="9_5hn0m"]
+[ext_resource type="Texture2D" uid="uid://dscvi0g1kvp70" path="res://assets/sprites/vfx_step_smoke.png" id="9_fs6b5"]
+[ext_resource type="Texture2D" uid="uid://dqetqcnxdh1n7" path="res://assets/sprites/vfx_slide_smoke.png" id="10_fs6b5"]
 [ext_resource type="Texture2D" uid="uid://bcwnhl8evkmo5" path="res://assets/sprites/Character_Slide.png" id="11_00abt"]
 [ext_resource type="Script" uid="uid://ecir55mvp1jh" path="res://assets/scritps/player/statemachine/states/PlayerWallGrind.gd" id="12_5ioq0"]
 [ext_resource type="Script" uid="uid://bwovhaam2lqqh" path="res://assets/scritps/player/statemachine/states/PlayerFall.gd" id="12_fe2yd"]
@@ -71,8 +74,136 @@ script = ExtResource("3_k52ex")
 sprite = ExtResource("4_onaww")
 movement_coefficient = Vector2(-0.4, 0.2)
 offset = Vector2(0, 600)
-sorting_order = 51
+sorting_order = 61
 metadata/_custom_type_script = "uid://barfqdc4cpfuf"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbtog"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj6xs"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyv6n"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ontek"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac5hi"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5vex"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elye6"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejcm2"]
+atlas = ExtResource("9_fs6b5")
+region = Rect2(448, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7g3g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbtog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj6xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyv6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ontek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac5hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5vex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elye6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejcm2")
+}],
+"loop": false,
+"name": &"step_smoke",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7g3g"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7lja"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo1x5"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktouo"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkymv"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it5ld"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dmu2"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7arh4"]
+atlas = ExtResource("10_fs6b5")
+region = Rect2(448, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24dbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7g3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7lja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo1x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktouo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkymv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it5ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dmu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7arh4")
+}],
+"loop": false,
+"name": &"slide_smoke",
+"speed": 15.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
 size = Vector2(32, 46)
@@ -1145,6 +1276,25 @@ script = ExtResource("1_ro8so")
 script = ExtResource("2_op0ni")
 parallax_layer_data = Array[ExtResource("3_k52ex")]([SubResource("Resource_m0kw3"), SubResource("Resource_dixok"), SubResource("Resource_b4aq2"), SubResource("Resource_k52ex")])
 
+[node name="VFX Manager" type="Node2D" parent="." node_paths=PackedStringArray("step_smoke_animation", "slide_smoke_animation")]
+script = ExtResource("8_fs6b5")
+step_smoke_animation = NodePath("Step smoke model")
+step_smoke_sprite_amount = 3
+step_smoke_layer_order = 61
+step_smoke_reversed = true
+slide_smoke_animation = NodePath("Slide smoke model")
+slide_smoke_sprite_amount = 7
+slide_smoke_layer_order = 61
+slide_smoke_reversed = true
+
+[node name="Step smoke model" type="AnimatedSprite2D" parent="VFX Manager"]
+sprite_frames = SubResource("SpriteFrames_q7g3g")
+animation = &"step_smoke"
+
+[node name="Slide smoke model" type="AnimatedSprite2D" parent="VFX Manager"]
+sprite_frames = SubResource("SpriteFrames_24dbd")
+animation = &"slide_smoke"
+
 [node name="Main character" type="Node2D" parent="."]
 position = Vector2(0, 4)
 script = ExtResource("8_coyvs")
@@ -1160,6 +1310,7 @@ initial_state = NodePath("Idle")
 script = ExtResource("6_tamy0")
 move_speed = 300
 move_direction = 1
+smoke_puff_offset = Vector2(-32, 20)
 animation_name = "run"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
@@ -1170,7 +1321,7 @@ jump_height = 150.0
 jump_ascension_duration = 0.55
 variable_jump_input_max_duration = 2.0
 variable_jump_min_velocity_multiplier = 0.5
-coyote_time_duration = 0.25
+coyote_time_duration = 0.15
 check_area_width = 16
 animation_name = "jump"
 collider_size = Vector2(32, 46)
@@ -1178,9 +1329,11 @@ collider_position = Vector2(2, 9)
 
 [node name="Slide" type="Node2D" parent="Main character/StateMachine"]
 script = ExtResource("8_7o1gs")
+slide_velocity_treshold = 150
 slide_min_duration = 0.8
 slide_max_duration = 1.2
 slide_initial_velocity = 500.0
+smoke_puff_offset = Vector2(-24, 20)
 animation_name = "slide"
 collider_size = Vector2(54, 28)
 collider_position = Vector2(3, 18)
@@ -1190,6 +1343,7 @@ script = ExtResource("12_fe2yd")
 fall_duration = 0.3
 max_fall_velocity = 800.0
 max_velocity_roll_coef = 0.95
+smoke_puff_offset = Vector2(-16, 20)
 animation_name = "fall"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
@@ -1205,6 +1359,7 @@ script = ExtResource("12_5ioq0")
 gravity_coefficient = 0.2
 fall_duration = 0.3
 max_fall_velocity = 800.0
+smoke_puff_offset = Vector2(14, 20)
 animation_name = "wall_grind"
 collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
@@ -1218,7 +1373,7 @@ collider_size = Vector2(32, 46)
 collider_position = Vector2(2, 9)
 
 [node name="Character body" type="CharacterBody2D" parent="Main character"]
-z_index = 50
+z_index = 51
 position = Vector2(106, -1230)
 safe_margin = 0.2
 script = ExtResource("2_mxlrn")
@@ -1256,7 +1411,7 @@ script = ExtResource("18_hpu56")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"slow"
+animation = &"run"
 script = ExtResource("16_swycs")
 
 [node name="Speed boost manager" type="Node2D" parent="Main character"]
@@ -1277,6 +1432,7 @@ right_collider = NodePath("../Character body/Right grab handle")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug text" type="RichTextLabel" parent="CanvasLayer"]
+visibility_layer = 4
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1289,7 +1445,7 @@ position = Vector2(156, -3)
 monitorable = false
 script = ExtResource("33_m0kw3")
 death_fader = NodePath("Death fader")
-fade_in_duration = 0.5
+fade_in_duration = 1.0
 fade_in_shader = SubResource("ShaderMaterial_coyvs")
 camera_center_duration = 2.0
 player_sprite_copy = NodePath("Player sprite copy")
@@ -1320,6 +1476,7 @@ visible = false
 material = SubResource("ShaderMaterial_hpu56")
 
 [node name="Tilemaps" type="Node2D" parent="."]
+visibility_layer = 2
 
 [node name="Plateforms" type="TileMapLayer" parent="Tilemaps"]
 z_index = 14

@@ -29,29 +29,29 @@ void fragment( )
 
 	vec4 pixel_color = textureLod( screen_texture, fixed_uv, 0.0 );
 	pixel_color.r = mix(
-		pixel_color.r
-	,	textureLod( screen_texture, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r
-	,	enable_shift
+		pixel_color.r,
+		textureLod( screen_texture, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r,
+		enable_shift
 	);
 	float right_blue = mix(
-		pixel_color.b
-	,	textureLod( screen_texture, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b
-	,	enable_shift
+		pixel_color.b,
+		textureLod( screen_texture, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b,
+		enable_shift
 	);
 	float left_blue = mix(
-		pixel_color.b
-	,	textureLod( screen_texture, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).b
-	,	enable_shift
+		pixel_color.b,
+		textureLod( screen_texture, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).b,	
+		enable_shift
 	);
 	pixel_color.b = mix(
 		pixel_color.b,
-		clamp((left_blue + right_blue), 0, 1),
+		clamp(left_blue + right_blue, 0, 1),
 		enable_shift
 		); //allow for cyan and magenta instead of red and blue
 	pixel_color.g = mix(
-		pixel_color.g
-	,	textureLod( screen_texture, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).g
-	,	enable_shift
+		pixel_color.g,	
+		textureLod( screen_texture, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).g,	
+		enable_shift
 	);
 	COLOR = pixel_color;
 }

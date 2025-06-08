@@ -6,6 +6,8 @@ class_name PlayerFall
 @export var fall_duration : float
 @export var max_fall_velocity : float
 @export var max_velocity_roll_coef : float
+@export_group("Smoke fx")
+@export var smoke_puff_offset : Vector2
 
 @onready var player_jump_state = $"../Jump"
 @onready var fall_gravity : float = (-2.0 * player_jump_state.jump_height) / (player_jump_state.jump_ascension_duration * fall_duration) * -1
@@ -15,7 +17,11 @@ func get_gravity() -> float:
 
 func can_enter() -> bool:
 	return super() and !gm.player_physics_body.is_on_floor()
-	
+
+func exit() :
+	if gm.player_physics_body.is_on_floor() : 
+		landing_smoke()
+
 func physics_update(delta: float):
 	gm.player_physics_body.velocity.y += get_gravity() * delta
 	if gm.player_physics_body.velocity.y > max_fall_velocity:
@@ -34,3 +40,8 @@ func physics_update(delta: float):
 		return
 
 func allow_grab_input() -> bool : return true
+
+func landing_smoke() : 
+	var direction = gm.player_physics_body.current_direction
+	var smoke_position = gm.player_physics_body.position + (smoke_puff_offset * Vector2(direction, 1))
+	gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.STEP_SMOKE)
