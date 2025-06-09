@@ -1,4 +1,4 @@
-[gd_scene load_steps=170 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=173 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
@@ -19,9 +19,10 @@
 [ext_resource type="Script" uid="uid://cghqdp2hc77sa" path="res://assets/scritps/player/statemachine/states/PlayerIdle.gd" id="8_ewef8"]
 [ext_resource type="Script" uid="uid://bsawwxfoorrhe" path="res://assets/scritps/VFX/VFXManager.gd" id="8_fs6b5"]
 [ext_resource type="Texture2D" uid="uid://dam1jw1yh0i2l" path="res://assets/sprites/Character_Jump.png" id="9_5hn0m"]
-[ext_resource type="Texture2D" uid="uid://dscvi0g1kvp70" path="res://assets/sprites/vfx_step_smoke.png" id="9_fs6b5"]
-[ext_resource type="Texture2D" uid="uid://dqetqcnxdh1n7" path="res://assets/sprites/vfx_slide_smoke.png" id="10_fs6b5"]
+[ext_resource type="Script" uid="uid://bvrdiy6vxogee" path="res://assets/scritps/VFX/VFXData.gd" id="9_54isw"]
+[ext_resource type="Texture2D" uid="uid://cb8jjny2w20g7" path="res://assets/sprites/vfx_small_smoke.png" id="10_4ddtm"]
 [ext_resource type="Texture2D" uid="uid://bcwnhl8evkmo5" path="res://assets/sprites/Character_Slide.png" id="11_00abt"]
+[ext_resource type="Texture2D" uid="uid://cr22pvexk0rhp" path="res://assets/sprites/vfx_big_smoke.png" id="11_rtrk1"]
 [ext_resource type="Script" uid="uid://ecir55mvp1jh" path="res://assets/scritps/player/statemachine/states/PlayerWallGrind.gd" id="12_5ioq0"]
 [ext_resource type="Script" uid="uid://bwovhaam2lqqh" path="res://assets/scritps/player/statemachine/states/PlayerFall.gd" id="12_fe2yd"]
 [ext_resource type="Texture2D" uid="uid://dyx3rj1ul4n7h" path="res://assets/sprites/Character_Fall.png" id="13_cefen"]
@@ -78,35 +79,35 @@ sorting_order = 61
 metadata/_custom_type_script = "uid://barfqdc4cpfuf"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbtog"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oj6xs"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(64, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dyv6n"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(128, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ontek"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(192, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac5hi"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(256, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5vex"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(320, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_elye6"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(384, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejcm2"]
-atlas = ExtResource("9_fs6b5")
+atlas = ExtResource("10_4ddtm")
 region = Rect2(448, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q7g3g"]
@@ -137,40 +138,49 @@ animations = [{
 "texture": SubResource("AtlasTexture_ejcm2")
 }],
 "loop": false,
-"name": &"step_smoke",
+"name": &"small_smoke",
 "speed": 15.0
 }]
 
+[sub_resource type="Resource" id="Resource_aa6mm"]
+script = ExtResource("9_54isw")
+vfx_name = "Small smoke"
+sprite_frame = SubResource("SpriteFrames_q7g3g")
+sprite_amount = 7
+layer_order = 31
+is_reversed = true
+metadata/_custom_type_script = "uid://bvrdiy6vxogee"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7g3g"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7lja"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(64, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uo1x5"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(128, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktouo"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(192, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkymv"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(256, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_it5ld"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(320, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dmu2"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(384, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7arh4"]
-atlas = ExtResource("10_fs6b5")
+atlas = ExtResource("11_rtrk1")
 region = Rect2(448, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_24dbd"]
@@ -201,9 +211,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_7arh4")
 }],
 "loop": false,
-"name": &"slide_smoke",
+"name": &"big_smoke",
 "speed": 15.0
 }]
+
+[sub_resource type="Resource" id="Resource_tnalh"]
+script = ExtResource("9_54isw")
+vfx_name = "Big smoke"
+sprite_frame = SubResource("SpriteFrames_24dbd")
+sprite_amount = 3
+layer_order = 61
+is_reversed = true
+metadata/_custom_type_script = "uid://bvrdiy6vxogee"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juoog"]
 size = Vector2(32, 46)
@@ -1276,24 +1295,10 @@ script = ExtResource("1_ro8so")
 script = ExtResource("2_op0ni")
 parallax_layer_data = Array[ExtResource("3_k52ex")]([SubResource("Resource_m0kw3"), SubResource("Resource_dixok"), SubResource("Resource_b4aq2"), SubResource("Resource_k52ex")])
 
-[node name="VFX Manager" type="Node2D" parent="." node_paths=PackedStringArray("step_smoke_animation", "slide_smoke_animation")]
+[node name="VFX Manager" type="Node2D" parent="."]
 script = ExtResource("8_fs6b5")
-step_smoke_animation = NodePath("Step smoke model")
-step_smoke_sprite_amount = 3
-step_smoke_layer_order = 61
-step_smoke_reversed = true
-slide_smoke_animation = NodePath("Slide smoke model")
-slide_smoke_sprite_amount = 7
-slide_smoke_layer_order = 61
-slide_smoke_reversed = true
-
-[node name="Step smoke model" type="AnimatedSprite2D" parent="VFX Manager"]
-sprite_frames = SubResource("SpriteFrames_q7g3g")
-animation = &"step_smoke"
-
-[node name="Slide smoke model" type="AnimatedSprite2D" parent="VFX Manager"]
-sprite_frames = SubResource("SpriteFrames_24dbd")
-animation = &"slide_smoke"
+small_smoke_vfx_data = SubResource("Resource_aa6mm")
+big_smoke_vfx_data = SubResource("Resource_tnalh")
 
 [node name="Main character" type="Node2D" parent="."]
 position = Vector2(0, 4)

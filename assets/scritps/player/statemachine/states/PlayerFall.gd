@@ -44,4 +44,4 @@ func allow_grab_input() -> bool : return true
 func landing_smoke() : 
 	var direction = gm.player_physics_body.current_direction
 	var smoke_position = gm.player_physics_body.position + (smoke_puff_offset * Vector2(direction, 1))
-	gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.STEP_SMOKE)
+	gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.BIG_SMOKE)

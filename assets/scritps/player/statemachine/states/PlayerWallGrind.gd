@@ -30,4 +30,4 @@ func sprite_is_reversed() -> bool:
 func slide_smoke() :
 	var direction = gm.player_physics_body.current_direction
 	var smoke_position = gm.player_physics_body.position + (smoke_puff_offset * Vector2(direction, 1))
-	gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.SLIDE_SMOKE)
+	gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.SMALL_SMOKE)

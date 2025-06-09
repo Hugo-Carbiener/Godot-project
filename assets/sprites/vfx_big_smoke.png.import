@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dscvi0g1kvp70"
-path="res://.godot/imported/vfx_step_smoke.png-370c8f141a0b68415ff3f8d0aefa3f80.ctex"
+uid="uid://cr22pvexk0rhp"
+path="res://.godot/imported/vfx_big_smoke.png-efa342d4fbb5a6bfba680b4e44264959.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/vfx_step_smoke.png"
-dest_files=["res://.godot/imported/vfx_step_smoke.png-370c8f141a0b68415ff3f8d0aefa3f80.ctex"]
+source_file="res://assets/sprites/vfx_big_smoke.png"
+dest_files=["res://.godot/imported/vfx_big_smoke.png-efa342d4fbb5a6bfba680b4e44264959.ctex"]
 
 [params]
 

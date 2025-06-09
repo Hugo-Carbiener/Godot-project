@@ -56,7 +56,7 @@ func running_smoke(animation_controler : AnimatedSprite2D) :
 		has_spawned_smoke_on_frame = true
 		var direction = gm.player_physics_body.current_direction
 		var smoke_position = gm.player_physics_body.position + (smoke_puff_offset * Vector2(direction, 1))
-		gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.STEP_SMOKE)
+		gm.vfx_manager.start_vfx_animation(smoke_position, direction, gm.vfx_manager.VFX.SMALL_SMOKE)
 
 func on_frame_changed(animation_controler : AnimatedSprite2D) : 
 	has_spawned_smoke_on_frame = false
