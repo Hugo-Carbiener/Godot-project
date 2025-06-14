@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export_group("Speed")
 @export var max_lateral_speed : float ## The maximum lateral speed the player can naturally reach  
 @export var lateral_acceleration : float ## Acceleration in distance unit per second
-var lateral_movement_input : bool = false ## Whether there was a lateral directionnal input this frame
 @export_group("Drag")
 @export var lateral_ground_drag_acceleration : float ## Acceleration from the force opposed to movement when on the ground
 @export var lateral_air_drag_acceleration : float ## Acceleration from the force opposed to movement when airborne
@@ -32,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() && previous_safe_position == Vector2.ZERO :
 		previous_safe_position = position
 	
+	compute_input_lateral_input(delta)
 	compute_speed_boost(delta)
 	compute_drag(delta)
 	compute_velocity_collisions()
@@ -42,7 +42,6 @@ func _physics_process(delta: float) -> void:
 		disable_snap()
 	
 	velocity.x = current_speed.x
-	lateral_movement_input = false
 	
 	move_and_slide()
 
@@ -56,8 +55,13 @@ func register_coyote_time_start() :
 	coyote_time_start = Time.get_unix_time_from_system()
 	
 # Called by the input manager whenever a directionnal input is pressed 
-func compute_input_lateral_speed(direction : int, delta : float) :
+func compute_input_lateral_input(delta : float) :
 	if gm.speed_boost_manager.is_speed_boosted() :  return;
+	
+	var direction = 0
+	if gm.input_manager.left_action_is_pressed : direction = -1
+	if gm.input_manager.right_action_is_pressed : direction = 1
+	if direction == 0 : return
 	current_direction = direction
 	
 	var added_velocity = lateral_acceleration * delta * direction
@@ -76,7 +80,7 @@ func compute_speed_boost(_delta : float) :
 	current_speed.x = (max_lateral_speed + boost_speed) * current_direction
 
 func compute_drag(delta : float) :
-	if lateral_movement_input || gm.speed_boost_manager.is_speed_boosted() : return
+	if gm.input_manager.movement_input_is_pressed() || gm.speed_boost_manager.is_speed_boosted() : return
 	if velocity.x == 0 : return
 	
 	var drag_enabled = is_on_floor() && !gm.state_machine.current_state.prevent_drag()

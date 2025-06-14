@@ -9,35 +9,67 @@ static var RELOAD_ACTION_KEY = "reload"
 static var SPEED_BOOST_ACTION_KEY = "speed-boost"
 static var GRAB_ACTION_KEY = "grab"
 
+var left_action_is_pressed : bool
+var right_action_is_pressed : bool
+var jump_action_is_pressed : bool
+var jump_action_is_released : bool
+var slide_action_is_pressed : bool
+var speed_boost_action_is_pressed : bool
 var grab_action_is_pressed : bool
+var reload_action_is_pressed : bool
 
 func _ready() -> void:
 	grab_action_is_pressed = false
 
 func _process(delta: float) -> void:
-	if gm.game_paused : return
-	if !gm.state_machine.current_state.allow_input(): return
-	
-	if Input.is_action_pressed("direction-left"):
-		gm.state_machine.current_state.update_lateral_speed(-1, delta)
-		
-	if Input.is_action_pressed("direction-right"):
-		gm.state_machine.current_state.update_lateral_speed(1, delta)
-	
-	if Input.is_action_just_pressed(JUMP_ACTION_KEY):
-		gm.state_machine.transition_to(PlayerJump.get_state_name())
-		
-	if Input.is_action_just_released(JUMP_ACTION_KEY) and gm.state_machine.current_state is PlayerJump:
-		(gm.state_machine.current_state as PlayerJump).on_jump_early_release()
-		
-	if Input.is_action_just_pressed(SLIDE_ACTION_KEY):
-		gm.state_machine.transition_to(PlayerSlide.get_state_name())
+	set_movement_input()
+	set_jump_input()
+	set_slide_input()
+	set_grab_input()
+	set_reload_input()
 
-	if Input.is_action_just_pressed(RELOAD_ACTION_KEY):
-		get_tree().reload_current_scene()
+func set_movement_input() :
+	left_action_is_pressed = !gm.game_paused \
+		&& gm.state_machine.current_state.allow_input() \
+		&& gm.state_machine.current_state.allow_lateral_movement() \
+		&& Input.is_action_pressed("direction-left")
 		
-	if Input.is_action_just_pressed(SPEED_BOOST_ACTION_KEY) :
-		if gm.speed_boost_manager.can_be_input() : 
-			gm.speed_boost_manager.start_speed_boost()
-			
-	grab_action_is_pressed = gm.state_machine.current_state.allow_grab_input() && Input.is_action_pressed(GRAB_ACTION_KEY)
+	right_action_is_pressed = !gm.game_paused \
+		&& gm.state_machine.current_state.allow_input() \
+		&& gm.state_machine.current_state.allow_lateral_movement() \
+		&& Input.is_action_pressed("direction-right")
+
+func set_jump_input() : 
+	jump_action_is_pressed = !gm.game_paused \
+		&& gm.state_machine.current_state.allow_input() \
+		&& Input.is_action_just_pressed(JUMP_ACTION_KEY)
+		
+	jump_action_is_released = !gm.game_paused \
+		&& gm.state_machine.current_state.allow_input() \
+		&& gm.state_machine.current_state is PlayerJump \
+		&& Input.is_action_just_released(JUMP_ACTION_KEY)
+
+func set_slide_input() :
+	slide_action_is_pressed = !gm.game_paused \
+		&& gm.state_machine.current_state.allow_input() \
+		&& Input.is_action_just_pressed(SLIDE_ACTION_KEY)
+
+func set_speed_boost_input() :
+	speed_boost_action_is_pressed = !gm.game_paused \
+	&& gm.state_machine.current_state.allow_input() \
+	&& gm.speed_boost_manager.can_be_input() \
+	&& Input.is_action_just_pressed(SPEED_BOOST_ACTION_KEY)
+
+func set_grab_input() : 
+	grab_action_is_pressed = !gm.game_paused \
+	&& gm.state_machine.current_state.allow_input() \
+	&& gm.state_machine.current_state.allow_grab_input() \
+	&& Input.is_action_pressed(GRAB_ACTION_KEY)
+
+func set_reload_input() : 
+	reload_action_is_pressed = !gm.game_paused \
+	&& gm.state_machine.current_state.allow_input() \
+	&& Input.is_action_just_pressed(RELOAD_ACTION_KEY)
+
+func movement_input_is_pressed() :
+	return left_action_is_pressed || right_action_is_pressed

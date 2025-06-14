@@ -18,7 +18,7 @@ func get_gravity() -> float :
 func physics_update(delta: float) :
 	super(delta)
 	
-	if !gm.player_physics_body.lateral_movement_input :
+	if !gm.input_manager.movement_input_is_pressed() :
 		gm.state_machine.transition_to("fall")
 	
 	if !gm.player_physics_body.is_on_wall_only() : 

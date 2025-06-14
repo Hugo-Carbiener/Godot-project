@@ -29,6 +29,9 @@ func _ready():
 	init_ghosts()
 	
 func _process(delta: float) -> void : 
+	if gm.input_manager.speed_boost_action_is_pressed :
+		start_speed_boost()
+	
 	if ghosts_are_enabled : 
 		if boost_remaining_time > 0 :
 			boost_remaining_time -= delta

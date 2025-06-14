@@ -15,5 +15,9 @@ var game_paused = false
 ## Camera
 @onready var camera = $"../Main character/Character body/Camera2D"
 
+func _process(delta: float) -> void:
+	if input_manager.reload_action_is_pressed : 
+		get_tree().reload_current_scene()
+
 func set_game_paused(paused : bool) :
 	game_paused = paused

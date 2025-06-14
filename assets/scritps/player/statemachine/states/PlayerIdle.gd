@@ -12,7 +12,6 @@ func physics_update(_delta: float):
 		gm.state_machine.transition_to("fall")
 		return
 
-		
 	if abs(gm.player_physics_body.velocity.x) > 0 && gm.player_physics_body.moved_last_frame():
 		gm.state_machine.transition_to("run")
 		return

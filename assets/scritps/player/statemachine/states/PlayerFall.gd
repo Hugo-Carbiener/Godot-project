@@ -27,7 +27,7 @@ func physics_update(delta: float):
 	if gm.player_physics_body.velocity.y > max_fall_velocity:
 		gm.player_physics_body.velocity.y = max_fall_velocity
 
-	if gm.player_physics_body.is_on_wall() && gm.player_physics_body.lateral_movement_input: 
+	if gm.player_physics_body.is_on_wall() && gm.input_manager.movement_input_is_pressed() : 
 		gm.state_machine.transition_to("wall grind")
 		return
 

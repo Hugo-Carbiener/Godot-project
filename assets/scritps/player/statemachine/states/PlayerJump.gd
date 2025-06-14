@@ -33,9 +33,13 @@ func enter():
 	gm.player_physics_body.velocity.y = jump_velocity
 	
 func physics_update(delta: float):
+	if gm.input_manager.jump_action_is_released :
+		on_jump_early_release()
+	
 	gm.player_physics_body.correct_corners(check_area_width, delta)
+	
 	# jump gravity
-	gm.player_physics_body.velocity.y  += get_gravity() * delta
+	gm.player_physics_body.velocity.y += get_gravity() * delta
 
 	# increment variable input jump timer
 	variable_jump_input_timer += delta

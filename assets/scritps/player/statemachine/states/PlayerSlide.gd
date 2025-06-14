@@ -29,7 +29,9 @@ func exit() :
 	gm.player_physics_body.disable_snap()
 	gm.player_animation_controller.disconnect("frame_changed", slide_smoke)
 
-func update(_delta: float):
+func update(delta: float):
+	super(delta)
+	
 	if gm.player_physics_body.is_on_slope() : 
 		can_exit = false
 		gm.player_physics_body.current_speed.x = get_initial_velocity()
@@ -50,11 +52,11 @@ func update(_delta: float):
 		gm.state_machine.transition_to("idle")
 		return
 		
-	if timer >= slide_min_duration && gm.player_physics_body.lateral_movement_input :
+	if timer >= slide_min_duration && gm.input_manager.movement_input_is_pressed() :
 		gm.state_machine.transition_to("idle")
 		return
 		
-	timer += _delta
+	timer += delta
 
 func physics_snap_on_slopes() -> bool: return true
 

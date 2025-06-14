@@ -22,7 +22,7 @@ func getPhysicsDebugText():
 	debug_text += "Is on slope: " + str(gm.player_physics_body.is_on_slope()) + "\n"
 	debug_text += "\nINPUT\n"
 	debug_text += "Moved last frame: " + str(gm.player_physics_body.moved_last_frame()) + "\n"
-	debug_text += "\nLateral input: " + str(gm.player_physics_body.lateral_movement_input) + "\n"
+	debug_text += "\nLateral input: " + str(gm.input_manager.movement_input_is_pressed()) + "\n"
 
 	return debug_text
 

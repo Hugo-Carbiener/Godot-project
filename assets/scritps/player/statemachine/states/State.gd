@@ -31,16 +31,14 @@ func exit() :
 	pass
 	
 func update(_delta: float):
-	pass
-	
+	if gm.input_manager.jump_action_is_pressed : 
+		gm.state_machine.transition_to(PlayerJump.get_state_name())
+
+	if gm.input_manager.slide_action_is_pressed : 
+		gm.state_machine.transition_to(PlayerSlide.get_state_name())
+
 func physics_update(_delta: float):
 	pass
-	
-func update_lateral_speed(direction : int, delta : float) :
-	gm.player_physics_body.lateral_movement_input = true
-	if !allow_lateral_movement() : return
-	
-	gm.player_physics_body.compute_input_lateral_speed(direction, delta)
 
 func modify_animation(_animation_controler : AnimatedSprite2D) : return
 func allow_input() -> bool : return true

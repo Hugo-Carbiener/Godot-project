@@ -83,7 +83,7 @@ func instantiate_vfx(position : Vector2, direction : int, sprite : AnimatedSprit
 
 func get_vfx_animated_sprite(sprite_array : Array[AnimatedSprite2D]) -> AnimatedSprite2D :
 	for sprite in sprite_array :
-		if !sprite.visible :
+		if sprite != null && !sprite.visible :
 			return sprite
 	return null
 

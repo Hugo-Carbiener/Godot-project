@@ -41,7 +41,7 @@ func modify_animation(animation_controler : AnimatedSprite2D) :
 	running_smoke(animation_controler)
 	
 	## slow animation 
-	if (gm.player_physics_body.lateral_movement_input) :
+	if gm.input_manager.movement_input_is_pressed() :
 		var delta_speed = gm.player_physics_body.previous_speed - gm.player_physics_body.velocity
 		if (gm.player_physics_body.previous_speed.x * gm.player_physics_body.velocity.x > 0 && delta_speed.x * gm.player_physics_body.velocity.x > 0) :
 			animation_controler.play("slow")
