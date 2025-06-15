@@ -5,11 +5,15 @@ class_name PlayerWallGrind
 
 @export var gravity_coefficient : float
 
+static func get_state_name() -> String:
+	return "wall grind"
+
 func enter():
 	super()
 	gm.player_animation_controller.connect("frame_changed", slide_smoke)
 
 func exit() : 
+	super()
 	gm.player_animation_controller.disconnect("frame_changed", slide_smoke)
 
 func get_gravity() -> float :
@@ -18,11 +22,14 @@ func get_gravity() -> float :
 func physics_update(delta: float) :
 	super(delta)
 	
+	if gm.input_manager.jump_action_is_pressed :
+		gm.state_machine.transition_to(PlayerJump.get_state_name())
+	
 	if !gm.input_manager.movement_input_is_pressed() :
-		gm.state_machine.transition_to("fall")
+		gm.state_machine.transition_to(PlayerFall.get_state_name().to_lower())
 	
 	if !gm.player_physics_body.is_on_wall_only() : 
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 
 func sprite_is_reversed() -> bool:
 	return true;

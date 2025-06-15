@@ -12,6 +12,9 @@ class_name PlayerFall
 @onready var player_jump_state = $"../Jump"
 @onready var fall_gravity : float = (-2.0 * player_jump_state.jump_height) / (player_jump_state.jump_ascension_duration * fall_duration) * -1
 
+static func get_state_name() -> String:
+	return "fall"
+
 func get_gravity() -> float:
 	return fall_gravity
 
@@ -26,17 +29,17 @@ func physics_update(delta: float):
 	gm.player_physics_body.velocity.y += get_gravity() * delta
 	if gm.player_physics_body.velocity.y > max_fall_velocity:
 		gm.player_physics_body.velocity.y = max_fall_velocity
-
-	if gm.player_physics_body.is_on_wall() && gm.input_manager.movement_input_is_pressed() : 
-		gm.state_machine.transition_to("wall grind")
+	
+	if gm.player_physics_body.is_on_wall() && gm.input_manager.movement_input_is_pressed(): 
+		gm.state_machine.transition_to(PlayerWallGrind.get_state_name().to_lower())
 		return
 
 	if gm.player_physics_body.is_on_floor() && gm.player_physics_body.previous_speed.y > max_velocity_roll_coef * max_fall_velocity : 
-		gm.state_machine.transition_to("roll")
+		gm.state_machine.transition_to(PlayerRoll.get_state_name().to_lower())
 		return
 
 	if gm.player_physics_body.is_on_floor() :
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 		return
 
 func allow_grab_input() -> bool : return true

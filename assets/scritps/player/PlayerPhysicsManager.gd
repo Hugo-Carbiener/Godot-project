@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var gm = $"../../Game manager"
 
+@export_group("Colliders")
+@export var main_collider : CollisionShape2D
 @export_group("Speed")
 @export var max_lateral_speed : float ## The maximum lateral speed the player can naturally reach  
 @export var lateral_acceleration : float ## Acceleration in distance unit per second
@@ -23,14 +25,15 @@ var coyote_time_start : float = 0
 func _physics_process(delta: float) -> void:
 	if gm.game_paused : return
 	check_coyote_time()
-	
+	get_wall_normal()
 	was_on_floor = is_on_floor()
 	previous_speed = velocity
 	previous_position = position
-	previous_direction = current_direction
+	
 	if is_on_floor() && previous_safe_position == Vector2.ZERO :
 		previous_safe_position = position
 	
+	compute_direction()
 	compute_input_lateral_input(delta)
 	compute_speed_boost(delta)
 	compute_drag(delta)
@@ -53,16 +56,23 @@ func check_coyote_time() :
 
 func register_coyote_time_start() :
 	coyote_time_start = Time.get_unix_time_from_system()
+
+func compute_direction() :
+	previous_direction = current_direction
+	var new_direction = velocity.x / abs(velocity.x)
+	if abs(new_direction) != 1 : return
 	
+	current_direction = new_direction
+
 # Called by the input manager whenever a directionnal input is pressed 
 func compute_input_lateral_input(delta : float) :
+	if !gm.state_machine.current_state.allow_lateral_movement() : return
 	if gm.speed_boost_manager.is_speed_boosted() :  return;
 	
 	var direction = 0
 	if gm.input_manager.left_action_is_pressed : direction = -1
 	if gm.input_manager.right_action_is_pressed : direction = 1
 	if direction == 0 : return
-	current_direction = direction
 	
 	var added_velocity = lateral_acceleration * delta * direction
 	current_speed.x += added_velocity

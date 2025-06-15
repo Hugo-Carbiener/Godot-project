@@ -11,6 +11,9 @@ var run_smoke_frames = [0, 4]
 # if the player was on the floor during the previous frame
 var coyote_time_time : float = 0
 
+static func get_state_name() -> String:
+	return "run"
+
 func can_enter() -> bool:
 	return super() and gm.player_physics_body.is_on_floor() and abs(gm.player_physics_body.velocity.x) > 0
 
@@ -25,15 +28,15 @@ func exit() :
 
 func physics_update(_delta: float):
 	if gm.player_physics_body.is_on_slope() :
-		gm.state_machine.transition_to("slide")
+		gm.state_machine.transition_to(PlayerSlide.get_state_name().to_lower())
 		return
 
 	if !gm.player_physics_body.is_on_floor():
-		gm.state_machine.transition_to("fall")
+		gm.state_machine.transition_to(PlayerFall.get_state_name().to_lower())
 		return
 	
 	if abs(gm.player_physics_body.velocity.x) == 0 || !gm.player_physics_body.moved_last_frame():
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 		return
 
 func modify_animation(animation_controler : AnimatedSprite2D) : 

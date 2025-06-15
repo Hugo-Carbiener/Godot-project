@@ -26,6 +26,7 @@ func enter():
 	gm.player_animation_controller.connect("frame_changed", slide_smoke)
 
 func exit() : 
+	super()
 	gm.player_physics_body.disable_snap()
 	gm.player_animation_controller.disconnect("frame_changed", slide_smoke)
 
@@ -39,21 +40,21 @@ func update(delta: float):
 		can_exit = true
 
 	if !gm.player_physics_body.is_on_floor() :
-		gm.state_machine.transition_to("fall")
+		gm.state_machine.transition_to(PlayerFall.get_state_name().to_lower())
 		return
 
 	if abs(gm.player_physics_body.velocity.x) < slide_velocity_treshold :
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 
 	if gm.player_physics_body.is_on_wall() :
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 
 	if timer >= slide_max_duration :
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 		return
 		
 	if timer >= slide_min_duration && gm.input_manager.movement_input_is_pressed() :
-		gm.state_machine.transition_to("idle")
+		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 		return
 		
 	timer += delta

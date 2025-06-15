@@ -3,11 +3,12 @@ class_name State
 
 @onready var gm = $"../../../Game manager"
 
-@export var animation_name : String
 @export_group("Collider modifier")
 @export var collider_size : Vector2;
 @export var collider_position : Vector2;
-
+@export_group("Animation modifier")
+@export var animation_name : String
+@export var animation_offset : Vector2
 signal Transitioned
 
 var can_exit = true
@@ -22,23 +23,28 @@ func can_enter() -> bool:
 func enter(): 
 	if animation_name: 
 		gm.player_animation_controller.play(animation_name.to_lower())
-		
+	
+	gm.player_animation_controller.position = animation_offset
+	
 	var collider = gm.player_physics_body.get_node("Collider")
 	collider.shape.size = collider_size
 	collider.position = collider_position
-	
+
 func exit() :
-	pass
-	
+	gm.player_animation_controller.position = Vector2.ZERO
+
 func update(_delta: float):
 	if gm.input_manager.jump_action_is_pressed : 
 		gm.state_machine.transition_to(PlayerJump.get_state_name())
 
 	if gm.input_manager.slide_action_is_pressed : 
 		gm.state_machine.transition_to(PlayerSlide.get_state_name())
-
+	
 func physics_update(_delta: float):
 	pass
+
+func reset_wall_jumps() :
+	gm.state_machine.states[PlayerJump.get_state_name().to_lower()].reset_wall_jumps()
 
 func modify_animation(_animation_controler : AnimatedSprite2D) : return
 func allow_input() -> bool : return true

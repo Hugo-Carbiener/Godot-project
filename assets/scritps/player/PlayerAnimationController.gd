@@ -8,10 +8,11 @@ func _process(_delta: float) -> void:
 	gm.state_machine.current_state.modify_animation(self)
 	
 func check_player_orientation():
-	scale.x = gm.player_physics_body.current_direction
-
-	if gm.state_machine.current_state.sprite_is_reversed() : 
-		scale.x *= -1;
+	var is_flipped = gm.player_physics_body.current_direction < 0
+	if gm.state_machine.current_state.sprite_is_reversed() :
+		is_flipped = !is_flipped
+	
+	flip_h = is_flipped
 
 ## test
 func darken_sprite() : 

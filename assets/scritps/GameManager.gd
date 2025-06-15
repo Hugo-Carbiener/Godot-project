@@ -9,7 +9,7 @@ class_name GameManager
 @onready var vfx_manager = $"../VFX Manager"
 @onready var speed_boost_manager = $"../Main character/Speed boost manager"
 @onready var input_manager = $"../Main character/Player Input"
-
+@onready var grab_manager = $"../Main character/Ledge detector"
 var game_paused = false
 
 ## Camera
