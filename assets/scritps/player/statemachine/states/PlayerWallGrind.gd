@@ -10,11 +10,13 @@ static func get_state_name() -> String:
 
 func enter():
 	super()
-	gm.player_animation_controller.connect("frame_changed", slide_smoke)
+	if !gm.player_animation_controller.is_connected("frame_changed", slide_smoke) :
+		gm.player_animation_controller.connect("frame_changed", slide_smoke)
 
 func exit() : 
 	super()
-	gm.player_animation_controller.disconnect("frame_changed", slide_smoke)
+	if gm.player_animation_controller.is_connected("frame_changed", slide_smoke) :
+		gm.player_animation_controller.disconnect("frame_changed", slide_smoke)
 
 func get_gravity() -> float :
 	return fall_gravity * gravity_coefficient

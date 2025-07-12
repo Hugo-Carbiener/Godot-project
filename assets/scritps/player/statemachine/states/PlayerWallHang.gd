@@ -21,33 +21,38 @@ func _ready() -> void:
 
 func enter(): 
 	super()
-	reset_wall_jumps()
+	gm.player_physics_body.reset_wall_jumps()
 	can_exit = false
 	smooth_landing_timer.start(smooth_landing_duration)
 
 func update(_delta: float):
 	super(_delta)
-	var wall_normal = gm.player_physics_body.get_wall_normal().x
-	var player_collider_size = gm.player_physics_body.main_collider.shape.size
-	var target_position = gm.grab_manager.nearest_detected_ledge + Vector2(player_collider_size.x / 2 * wall_normal, player_collider_size.y / 2) - gm.player_physics_body.main_collider.position
-	gm.player_physics_body.global_position = gm.player_physics_body.position.lerp(target_position, (smooth_landing_duration - smooth_landing_timer.time_left) / smooth_landing_duration)
+	smooth_landing(smooth_landing_timer)
+	if is_looking_down() && gm.input_manager.jump_action_is_pressed :
+		ledge_drop()
+		return
+		
+	if is_looking_up() && gm.input_manager.jump_action_is_pressed:
+		ledge_jump()
+		return
 
 func modify_animation(animation_controler : AnimatedSprite2D) : 
 	if is_looking_down() :
 		animation_controler.play(GRAB_BOTTOM_ANIMATION_KEY)
-		
-		if gm.input_manager.jump_action_is_pressed :
-			ledge_drop()
 		return
 	
 	if is_looking_up() :
 		animation_controler.play(GRAB_TOP_ANIMATION_KEY)
-		
-		if gm.input_manager.jump_action_is_pressed :
-			ledge_jump()
 		return
 	
 	animation_controler.play(GRAB_ANIMATION_KEY)
+
+func smooth_landing(timer : Timer) :
+	if timer.time_left > 0:
+		var wall_normal = gm.player_physics_body.get_wall_normal().x
+		var player_collider_size = gm.player_physics_body.main_collider.shape.size
+		var target_position = gm.grab_manager.nearest_detected_ledge + Vector2(player_collider_size.x / 2 * wall_normal, player_collider_size.y / 2) - gm.player_physics_body.main_collider.position
+		gm.player_physics_body.global_position = gm.player_physics_body.position.lerp(target_position, (smooth_landing_duration - smooth_landing_timer.time_left) / smooth_landing_duration)
 
 func is_looking_up() -> bool :
 	return (gm.input_manager.left_action_is_pressed && gm.player_physics_body.get_wall_normal().x < 0) \

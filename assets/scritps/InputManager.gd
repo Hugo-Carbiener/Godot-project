@@ -13,6 +13,7 @@ var left_action_is_pressed : bool
 var right_action_is_pressed : bool
 var bottom_action_is_pressed : bool
 var jump_action_is_pressed : bool
+var jump_action_is_held : bool
 var jump_action_is_released : bool
 var slide_action_is_pressed : bool
 var speed_boost_action_is_pressed : bool
@@ -24,6 +25,7 @@ func _ready() -> void:
 	left_action_is_pressed = false
 	right_action_is_pressed = false
 	jump_action_is_pressed = false
+	jump_action_is_held = false
 	jump_action_is_released = false
 	slide_action_is_pressed = false
 	speed_boost_action_is_pressed = false
@@ -55,7 +57,11 @@ func set_jump_input() :
 	jump_action_is_pressed = !gm.game_paused \
 		&& gm.state_machine.current_state.allow_input() \
 		&& Input.is_action_just_pressed(JUMP_ACTION_KEY)
-
+	
+	jump_action_is_held = !gm.game_paused \
+		&& gm.state_machine.current_state.allow_input() \
+		&& Input.is_action_pressed(JUMP_ACTION_KEY)
+	
 	jump_action_is_released = !gm.game_paused \
 		&& gm.state_machine.current_state.allow_input() \
 		&& gm.state_machine.current_state is PlayerJump \

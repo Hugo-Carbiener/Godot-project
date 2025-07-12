@@ -12,13 +12,10 @@ class_name PlayerJump
 @export var coyote_time_duration : float
 @export_group("Corner correction")
 @export var check_area_width : int
-@export_group("Wall jump")
-@export var wall_jump_amount : int
 
 @onready var jump_velocity : float = (2.0 * jump_height) / jump_ascension_duration * -1
 @onready var jump_gravity : float = (-2.0 * jump_height) / pow(jump_ascension_duration, 2) * -1
 
-var remaining_wall_jumps : int
 var variable_jump_input_timer : float
 
 static func get_state_name() -> String: 
@@ -28,16 +25,15 @@ func get_gravity() -> float:
 	return jump_gravity
 
 func can_enter() -> bool:
-	return super() && is_floored_jump() || is_wall_jump()
+	print(str(gm.player_physics_body.remaining_wall_jumps) + "/" + str(gm.player_physics_body.wall_jump_amount))
+	print(str(gm.player_physics_body.can_wall_jump()))
+	return super() && (is_floored_jump() || is_wall_jump())
 	
 func enter():
 	super()
-	if is_floored_jump() :
-		reset_wall_jumps()
-	
 	if is_wall_jump() :
 		gm.player_physics_body.current_speed.x = gm.player_physics_body.max_lateral_speed * gm.player_physics_body.get_wall_normal().x
-		remaining_wall_jumps -= 1
+		gm.player_physics_body.consume_wall_jump()
 	
 	variable_jump_input_timer = 0
 	gm.player_physics_body.velocity.y = jump_velocity
@@ -75,8 +71,5 @@ func is_floored_jump() -> bool :
 	return (gm.player_physics_body.is_on_floor() || is_coyote_time_valid(gm.player_physics_body.coyote_time_start))
 
 func is_wall_jump() -> bool :
-	return remaining_wall_jumps > 0 \
+	return gm.player_physics_body.can_wall_jump() \
 	&& (gm.state_machine.current_state is PlayerWallGrind || gm.state_machine.current_state is PlayerWallHang)
-
-func reset_wall_jumps() :
-	remaining_wall_jumps = wall_jump_amount

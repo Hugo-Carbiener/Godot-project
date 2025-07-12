@@ -36,18 +36,17 @@ const Z_ORDER_FADE_OUT = 103
 func _ready() -> void:
 	start_time = Time.get_unix_time_from_system()
 	transition_active = false
-	
+	fade_in_timer.one_shot = true
+	camera_timer.one_shot = true
+	glitch_timer.one_shot = true
+	fade_out_timer.one_shot = true
 	add_child(fade_in_timer)
 	add_child(camera_timer)
 	add_child(glitch_timer)
 	add_child(fade_out_timer)
 	fade_in_timer.connect("timeout", on_fade_in_over)
-	fade_in_timer.connect("timeout", fade_in_timer.stop)
-	camera_timer.connect("timeout", camera_timer.stop)
 	glitch_timer.connect("timeout", on_glitch_over)
-	glitch_timer.connect("timeout", glitch_timer.stop)
 	fade_out_timer.connect("timeout", on_fade_out_over)
-	fade_out_timer.connect("timeout", fade_out_timer.stop)
 	
 	connect("body_entered", start_death_transition)
 

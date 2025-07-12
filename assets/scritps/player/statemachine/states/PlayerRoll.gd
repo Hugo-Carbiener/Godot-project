@@ -8,7 +8,7 @@ static func get_state_name() -> String:
 	return "roll"
 
 func on_animation_end() : 
-	if gm.player_animation_controller.animation == get_state_name() :
+	if gm.player_animation_controller.animation == animation_name :
 		gm.speed_boost_manager.unlock_speed_boost_input()
 		gm.state_machine.transition_to(PlayerIdle.get_state_name().to_lower())
 
@@ -17,3 +17,5 @@ func physics_update(_delta: float):
 		gm.state_machine.transition_to(PlayerFall.get_state_name().to_lower())
 		return
 	pass
+
+func allow_input() -> bool : return false
