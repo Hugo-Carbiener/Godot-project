@@ -34,11 +34,17 @@ func exit() :
 	gm.player_animation_controller.position = Vector2.ZERO
 
 func update(_delta: float):
+	if gm.player_physics_body.is_on_wall() && PlayerWallClimb.is_input_valid() :
+		gm.state_machine.transition_to(PlayerWallClimb.get_state_name().to_lower())
+		return
+	
 	if gm.input_manager.jump_action_is_pressed : 
 		gm.state_machine.transition_to(PlayerJump.get_state_name())
+		return
 
 	if gm.input_manager.slide_action_is_pressed : 
 		gm.state_machine.transition_to(PlayerSlide.get_state_name())
+		return
 	
 func physics_update(_delta: float):
 	pass

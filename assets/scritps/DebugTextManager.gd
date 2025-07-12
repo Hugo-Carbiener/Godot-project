@@ -24,7 +24,7 @@ func getPhysicsDebugText():
 	
 	debug_text += "\nINPUT\n"
 	debug_text += "Lateral input (left, right, bottom): (" + str(gm.input_manager.left_action_is_pressed) + ", " + str(gm.input_manager.right_action_is_pressed) + ", " + str(gm.input_manager.bottom_action_is_pressed) + ")\n"
-	debug_text += "Jump (pressed, released): " + str(gm.input_manager.jump_action_is_pressed) + ", " + str(gm.input_manager.jump_action_is_released) + "\n"
+	debug_text += "Jump (pressed, released, held): " + str(gm.input_manager.jump_action_is_pressed) + ", " + str(gm.input_manager.jump_action_is_released) + ", " + str(gm.input_manager.jump_action_is_held) + "\n"
 	debug_text += "Slide: " + str(gm.input_manager.slide_action_is_pressed) + "\n"
 	debug_text += "Speed boost: " + str(gm.input_manager.speed_boost_action_is_pressed) + "\n"
 	debug_text += "Grab: " + str(gm.input_manager.grab_action_is_pressed) + "\n"

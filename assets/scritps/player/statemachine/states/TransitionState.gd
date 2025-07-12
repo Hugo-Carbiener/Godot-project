@@ -14,7 +14,6 @@ enum boost_frame_timings {
 }
 
 func allow_lateral_movement () -> bool : return false;
-func allow_input() -> bool : return false
 func prevent_drag() -> bool : return true
 
 func enter():

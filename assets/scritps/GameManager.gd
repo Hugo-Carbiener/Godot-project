@@ -12,8 +12,14 @@ class_name GameManager
 @onready var grab_manager = $"../Main character/Ledge detector"
 var game_paused = false
 
+static var instance : GameManager
+
 ## Camera
 @onready var camera = $"../Main character/Character body/Camera2D"
+
+func _ready() -> void:
+	if instance == null : 
+		instance = self
 
 func _process(delta: float) -> void:
 	if input_manager.reload_action_is_pressed : 

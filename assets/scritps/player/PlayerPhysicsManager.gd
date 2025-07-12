@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export_group("Speed")
 @export var max_lateral_speed : float ## The maximum lateral speed the player can naturally reach  
 @export var lateral_acceleration : float ## Acceleration in distance unit per second
+@export var lateral_air_acceleration : float
 @export_group("Drag")
 @export var lateral_ground_drag_acceleration : float ## Acceleration from the force opposed to movement when on the ground
 @export var lateral_air_drag_acceleration : float ## Acceleration from the force opposed to movement when airborne
@@ -37,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	compute_input_lateral_input(delta)
 	compute_speed_boost(delta)
 	compute_drag(delta)
-	compute_velocity_collisions()
 	
 	if is_on_slope() :
 		enable_snap()
@@ -45,8 +45,8 @@ func _physics_process(delta: float) -> void:
 		disable_snap()
 	
 	velocity.x = current_speed.x
-	
 	move_and_slide()
+	update_physics_variables()
 
 func check_coyote_time() :
 	if (was_on_floor == true 
@@ -74,7 +74,8 @@ func compute_input_lateral_input(delta : float) :
 	if gm.input_manager.right_action_is_pressed : direction = 1
 	if direction == 0 : return
 	
-	var added_velocity = lateral_acceleration * delta * direction
+	var acceleration = lateral_acceleration if is_on_floor() else lateral_air_acceleration 
+	var added_velocity = acceleration * delta * direction
 	current_speed.x += added_velocity
 	if abs(current_speed.x) > max_lateral_speed :
 		current_speed.x = max_lateral_speed * direction
@@ -99,16 +100,9 @@ func compute_drag(delta : float) :
 	current_speed.x -= (velocity.x / abs(velocity.x)) * drag_value
 
 # Nullify vertical and lateral velocities in case of a collision 
-# To use after corner correction, because it avoids collision
-func compute_velocity_collisions() :
-	if is_on_ceiling() and current_speed.y > 0 :
-		current_speed.y = 0
-	
-	if is_on_wall() :
-		var wall_normal = get_wall_normal() 
-		if ((wall_normal == Vector2.RIGHT and current_speed.x < 0)
-		or (wall_normal == Vector2.LEFT and current_speed.x > 0)) : 
-			current_speed.x = 0
+# To use after move_and_slide
+func update_physics_variables() :
+	current_speed = velocity
 
 # Simulate movement to verify if a collision with a ceilling will occur and if so, simulate lateral movement to find the nearest corner
 func correct_corners(check_area_width : int, delta : float) : 

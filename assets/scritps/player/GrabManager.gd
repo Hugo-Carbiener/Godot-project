@@ -18,6 +18,7 @@ func _process(_delta: float) -> void:
 	
 	if !gm.player_physics_body.is_on_wall() && nearest_detected_ledge != Vector2.ZERO :
 		nearest_detected_ledge = Vector2.ZERO
+		debug_sprite.position = Vector2.ZERO
 	
 	detect_ledge()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=4 uid="uid://bt8t1ijcp3k8p"]
+[gd_scene load_steps=210 format=4 uid="uid://bt8t1ijcp3k8p"]
 
 [ext_resource type="Texture2D" uid="uid://210ocvmildqr" path="res://assets/sprites/Character_Idle.png" id="1_nf5ea"]
 [ext_resource type="Texture2D" uid="uid://dwdp6tue4ijn" path="res://assets/sprites/chapter-1/sunset.png" id="1_qvo05"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://e1a5ah7sbhsr" path="res://assets/sprites/Character_Slow.png" id="19_wtg5e"]
 [ext_resource type="Texture2D" uid="uid://dy5euwas4rr58" path="res://assets/sprites/Character_Wall-grind.png" id="20_2ojer"]
 [ext_resource type="Script" uid="uid://ciw6057ucmu4h" path="res://assets/scritps/player/statemachine/states/PlayerWallHang.gd" id="22_m5eci"]
+[ext_resource type="Script" uid="uid://b2r8705mwp03c" path="res://assets/scritps/player/statemachine/states/PlayerWallClimb.gd" id="23_rtrk1"]
 [ext_resource type="Script" uid="uid://x8o8yoipg014" path="res://assets/scritps/player/SpeedBoostManager.gd" id="25_8kt5s"]
 [ext_resource type="Shader" uid="uid://d06dngyu7alum" path="res://assets/shaders/solid-white.gdshader" id="26_ja8h8"]
 [ext_resource type="Texture2D" uid="uid://uw7dmahvvnlc" path="res://assets/sprites/chapter-1/plateform-tiles.png" id="26_wbmaj"]
@@ -46,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://dy700fescpj13" path="res://assets/sprites/Character_Wall-hang-top.png" id="31_rtrk1"]
 [ext_resource type="Script" uid="uid://cvr73447nqn6y" path="res://assets/scritps/DeathBox.gd" id="33_m0kw3"]
 [ext_resource type="Shader" uid="uid://c1scmr4bqvxdr" path="res://assets/shaders/CircleFadeIn.gdshader" id="34_dixok"]
+[ext_resource type="Texture2D" uid="uid://ccpywvsn6s4kc" path="res://assets/sprites/Character_Wall-climb.png" id="37_t7ayy"]
 [ext_resource type="Shader" uid="uid://bmfv5soipwkjn" path="res://assets/shaders/BasicFadeOut.gdshader" id="37_vo58h"]
 [ext_resource type="Shader" uid="uid://coo8e7f50heyb" path="res://assets/shaders/Glitch.gdshader" id="39_cvwev"]
 
@@ -614,6 +616,38 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("19_wtg5e")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6noi"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rugb6"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r36yu"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilubj"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4tyy"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmcjy"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bvnu"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpl2h"]
+atlas = ExtResource("37_t7ayy")
+region = Rect2(448, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_op0ni"]
 atlas = ExtResource("20_2ojer")
 region = Rect2(0, 0, 64, 64)
@@ -995,6 +1029,35 @@ animations = [{
 "loop": true,
 "name": &"slow",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6noi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rugb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r36yu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilubj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4tyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmcjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bvnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpl2h")
+}],
+"loop": false,
+"name": &"wall_climb",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1517,7 +1580,7 @@ coyote_time_duration = 0.15
 check_area_width = 16
 wall_jump_amount = 1
 collider_size = Vector2(32, 46)
-collider_position = Vector2(2, 9)
+collider_position = Vector2(2, -13)
 animation_name = "jump"
 
 [node name="Slide" type="Node2D" parent="Main character/StateMachine"]
@@ -1574,6 +1637,14 @@ collider_position = Vector2(2, 9)
 animation_name = "ledge_grab"
 animation_offset = Vector2(2, 11)
 
+[node name="Wall climb" type="Node2D" parent="Main character/StateMachine"]
+script = ExtResource("23_rtrk1")
+vertical_speed = 200.0
+collider_size = Vector2(32, 46)
+collider_position = Vector2(2, 9)
+animation_name = "wall_climb"
+animation_offset = Vector2(17, 0)
+
 [node name="Character body" type="CharacterBody2D" parent="Main character" node_paths=PackedStringArray("main_collider")]
 z_index = 51
 position = Vector2(106, -1230)
@@ -1582,6 +1653,7 @@ script = ExtResource("2_mxlrn")
 main_collider = NodePath("Collider")
 max_lateral_speed = 300.0
 lateral_acceleration = 750.0
+lateral_air_acceleration = 200.0
 lateral_ground_drag_acceleration = 650.0
 lateral_air_drag_acceleration = 75.0
 snap_length = 16.0
@@ -1601,7 +1673,7 @@ script = ExtResource("18_hpu56")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main character/Character body"]
 sprite_frames = SubResource("SpriteFrames_p5m8t")
-animation = &"ledge_grab_top"
+animation = &"wall_climb"
 script = ExtResource("16_swycs")
 
 [node name="Ledge detector" type="Node2D" parent="Main character" node_paths=PackedStringArray("debug_sprite")]
